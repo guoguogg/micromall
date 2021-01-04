@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>micromall</artifactId>
+        <groupId>run.micromall</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <artifactId>micromall-service</artifactId>
+    <description>Service实现层以及Manager层</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>run.micromall</groupId>
+            <artifactId>micromall-db</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
