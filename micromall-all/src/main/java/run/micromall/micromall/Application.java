@@ -26,12 +26,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Application
- *
  * @author songhaozhi
- * @since 2021/1/4
+ * @since 2021年1月5日20:21:53
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
 public class Application {
 
     public static void main(String[] args) {

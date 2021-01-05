@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>micromall</artifactId>
+        <groupId>run.micromall</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>micromall-all</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>run.micromall</groupId>
+            <artifactId>micromall-db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>run.micromall</groupId>
+            <artifactId>micromall-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>run.micromall</groupId>
+            <artifactId>micromall-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>run.micromall</groupId>
+            <artifactId>micromall-admin-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>run.micromall</groupId>
+            <artifactId>micromall-web-api</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <configuration>
+                            <executable>true</executable>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

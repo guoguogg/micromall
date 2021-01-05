@@ -20,22 +20,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall;
+package run.micromall.micromall.controller;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Application
+ * HelloController
  *
  * @author songhaozhi
- * @since 2021/1/4
+ * @since 2021/1/5
  */
-@SpringBootApplication
-public class Application {
+@RestController
+public class HelloController {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    @GetMapping("index")
+    public String index(){
+        return "HelloWord";
     }
 
 }

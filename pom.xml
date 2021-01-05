@@ -16,6 +16,7 @@
         <module>micromall-core</module>
         <module>micromall-admin-api</module>
         <module>micromall-web-api</module>
+        <module>micromall-all</module>
     </modules>
 
     <version>1.0.0</version>
@@ -74,6 +75,17 @@
                 <artifactId>micromall-admin-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>run.micromall</groupId>
+                <artifactId>micromall-web-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>run.micromall</groupId>
+                <artifactId>micromall-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
