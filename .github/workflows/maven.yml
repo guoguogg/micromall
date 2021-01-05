@@ -29,7 +29,7 @@ jobs:
         chmod 700 ~/.ssh && chmod 700 ~/.ssh/*
         ls -l ~/.ssh/
     - name: Download config file and replace
-        run: |
+      run: |
           git clone git@github.com:gujiniCY/micromall_prod_configuration.git
           mv -f ./micromall_prod_configuration/dev_config/application.yml ./micromall-all/src/main/resources/application.yml
     - name: Build Java jar
