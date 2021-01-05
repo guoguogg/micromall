@@ -20,6 +20,7 @@
     </modules>
 
     <version>1.0.0</version>
+
     <groupId>run.micromall</groupId>
     <artifactId>micromall</artifactId>
     <name>micromall</name>
