@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
       with:
-        ref: main  # 切换到master分支
+        ref: main  # 切换到main分支
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -38,9 +38,9 @@ jobs:
     - name: Move files and compress
       run: |
           mkdir -p transfer_files
-          mv ./micromall-all/target/micromall-all.jar ./transfer_files/micromall-all.jar
+          mv ./micromall/micromall-all/target/micromall-all.jar ./transfer_files/micromall-all.jar
     - name: Scp file to aliyun
-      uses: appleboy/scp-action@main
+      uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.IP }}
         username: ${{ secrets.NAME }}
@@ -49,7 +49,7 @@ jobs:
         source: "transfer_files.tar.gz"
         target: "/home"
     - name: Distribution and backup
-      uses: appleboy/ssh-action@main
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.IP }}
         username: ${{ secrets.NAME }}
