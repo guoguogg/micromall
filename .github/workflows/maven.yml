@@ -33,10 +33,10 @@ jobs:
           git clone git@github.com:gujiniCY/micromall_prod_configuration.git
           mv -f ./micromall_prod_configuration/dev_config/application.yml ./micromall-all/src/main/resources/application.yml
     - name: Build Java jar
-        run: |
+      run: |
           mvn clean install
     - name: Move files and compress
-        run: |
+      run: |
           mkdir -p transfer_files
           mv ./micromall-all/target/micromall-all.jar ./transfer_files/micromall-all.jar
     - name: Scp file to aliyun
