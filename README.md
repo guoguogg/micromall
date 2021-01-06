@@ -1,9 +1,9 @@
 # micromall
 
 ![JDK](https://img.shields.io/badge/JDK-1.8-green.svg?style=flat-square)
-[![LICENSE](https://img.shields.io/github/license/micromall-team/micromall.svg?style=flat-square)](https://github.com/gujiniCY/mayday/blob/master/LICENSE)
-[![star](https://img.shields.io/github/stars/micromall-team/micromall.svg?label=Stars&style=social)](https://github.com/gujiniCY/mayday)
-[![star](https://gitee.com/micromall-team/micromall/badge/star.svg?theme=white)](https://gitee.com/song_haozhi/mayday) 
+[![LICENSE](https://img.shields.io/github/license/micromall-team/micromall.svg?style=flat-square)](https://github.com/micromall-team/micromall/blob/main/LICENSE)
+[![star](https://img.shields.io/github/stars/micromall-team/micromall.svg?label=Stars&style=social)](https://github.com/micromall-team/micromall)
+[![star](https://gitee.com/micromall-team/micromall/badge/star.svg?theme=white)](https://gitee.com/micromall-team/micromall) 
 <p align="center">
 	<a href="https://jq.qq.com/?_wv=1027&k=QI1J90T9"><img src="https://img.shields.io/badge/QQ群-894959829-orange"/></a>
 </p>
