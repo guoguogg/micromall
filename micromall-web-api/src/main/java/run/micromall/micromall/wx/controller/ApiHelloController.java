@@ -20,23 +20,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.controller;
+package run.micromall.micromall.wx.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * HelloController
  *
  * @author songhaozhi
- * @since 2021/1/5
+ * @since 2021/1/12
  */
 @RestController
-public class HelloController {
+@RequestMapping("/api")
+public class ApiHelloController {
 
     @GetMapping
     public String index() {
-        return "HelloWord";
+        return "hello wx";
     }
 
 }

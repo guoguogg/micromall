@@ -22,8 +22,10 @@
  */
 package run.micromall.micromall;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Application
@@ -31,7 +33,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author songhaozhi
  * @since 2021/1/4
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"run.micromall.micromall.admin",
+        "run.micromall.micromall.core","run.micromall.micromall.db"})
+@MapperScan("run.micromall.micromall.db")
+@EnableTransactionManagement
 public class Application {
 
     public static void main(String[] args) {

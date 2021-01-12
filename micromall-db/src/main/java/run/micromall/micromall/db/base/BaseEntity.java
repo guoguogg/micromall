@@ -20,24 +20,37 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall;
+package run.micromall.micromall.db.base;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
+import java.time.LocalDateTime;
 
 /**
+ * BaseEntity
+ *
  * @author songhaozhi
- * @since 2021年1月5日20:21:53
+ * @since 2021/1/12
  */
-@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
-@MapperScan("run.micromall.micromall.db")
-@EnableTransactionManagement
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-
+@Data
+public class BaseEntity {
+    /**
+     * 添加时间
+     */
+    @TableField(value = "add_time")
+    private LocalDateTime addTime;
+    /**
+     * 添加时间
+     */
+    @TableField(value = "update_time")
+    @JsonIgnore
+    private LocalDateTime updateTime;
+    /**
+     * 逻辑删除
+     */
+    @TableField(value = "deleted")
+    @JsonIgnore
+    private Integer deleted;
 }

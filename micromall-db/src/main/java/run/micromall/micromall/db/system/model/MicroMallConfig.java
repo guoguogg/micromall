@@ -20,24 +20,37 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall;
+package run.micromall.micromall.db.system.model;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
+import java.io.Serializable;
 /**
+ * 系统配置表
+ *
  * @author songhaozhi
- * @since 2021年1月5日20:21:53
+ * @since 2021/1/12
  */
-@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
-@MapperScan("run.micromall.micromall.db")
-@EnableTransactionManagement
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-
+@Data
+@TableName("micromall_config")
+public class MicroMallConfig implements Serializable {
+    /**
+     * 自增ID
+     */
+    @TableId(value = "sys_id",type = IdType.AUTO)
+    private Long sysId;
+    /**
+     * key
+     */
+    @TableField(value = "key_name")
+    private String keyName;
+    /**
+     * value
+     */
+    @TableField(value = "key_value")
+    private String keyValue;
 }

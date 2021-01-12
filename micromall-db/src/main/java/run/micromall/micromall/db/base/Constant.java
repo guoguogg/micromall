@@ -20,24 +20,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall;
+package run.micromall.micromall.db.base;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
+ * Constant
+ *
  * @author songhaozhi
- * @since 2021年1月5日20:21:53
+ * @since 2021/1/12
  */
-@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
-@MapperScan("run.micromall.micromall.db")
-@EnableTransactionManagement
-public class Application {
+public class Constant {
+    /**
+     * 所有配置都缓存在这个Map
+     */
+    public static Map<String,String> configMap = new HashMap<>();
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    public static void setConfigMap(Map<String, String> configMap) {
+        Constant.configMap = configMap;
     }
-
 }
+

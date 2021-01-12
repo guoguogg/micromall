@@ -20,24 +20,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall;
+package run.micromall.micromall.db.system.mapper;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import run.micromall.micromall.db.system.model.MicroMallConfig;
 
 /**
+ * MicroMallConfigMapper
+ *
  * @author songhaozhi
- * @since 2021年1月5日20:21:53
+ * @since 2021/1/12
  */
-@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
-@MapperScan("run.micromall.micromall.db")
-@EnableTransactionManagement
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-
+public interface MicroMallConfigMapper extends BaseMapper<MicroMallConfig> {
 }

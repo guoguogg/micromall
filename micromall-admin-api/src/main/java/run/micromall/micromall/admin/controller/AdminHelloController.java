@@ -20,24 +20,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall;
+package run.micromall.micromall.admin.controller;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * HelloController
+ *
  * @author songhaozhi
- * @since 2021年1月5日20:21:53
+ * @since 2021/1/5
  */
-@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
-@MapperScan("run.micromall.micromall.db")
-@EnableTransactionManagement
-public class Application {
+@RestController
+@RequestMapping("/admin")
+public class AdminHelloController {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    @GetMapping
+    public String index() {
+        return "hello admin";
     }
 
 }
