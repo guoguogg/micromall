@@ -7,14 +7,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @author songhaozhi
  */
-public interface Properties<T> {
-    /**
-     * 获取value
-     *
-     * @return
-     */
-    String getValue();
-
+public interface Properties extends Value<String> {
     /**
      * 获取配置类型
      *
@@ -29,7 +22,7 @@ public interface Properties<T> {
      */
     String getDefaultValue();
 
-    default T convertTo(String value, Class<T> type) {
+    default <T> T convertTo(String value, Class<T> type) {
         if (ObjectUtils.isEmpty(value) || ObjectUtils.isEmpty(type)) {
             throw new RuntimeException("参数错误");
         }

@@ -31,6 +31,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import run.micromall.micromall.db.base.Constant;
 import run.micromall.micromall.db.system.properties.MallProperties;
+import run.micromall.micromall.db.system.properties.StorageProperties;
 import run.micromall.micromall.service.system.MicroMallConfigService;
 
 import java.util.HashMap;
@@ -48,6 +49,7 @@ import java.util.Map;
 public class StartListener  implements ApplicationListener<ContextRefreshedEvent> {
 
     private final Environment environment;
+
     private final MicroMallConfigService configService;
     /**
      * 默认配置
@@ -57,6 +59,8 @@ public class StartListener  implements ApplicationListener<ContextRefreshedEvent
     static {
         DEFAULT_CONFIGS.put(MallProperties.MICROMALL_MALL_NAME.getValue(),
                 MallProperties.MICROMALL_MALL_NAME.getDefaultValue());
+        DEFAULT_CONFIGS.put(StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getValue(),
+                StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getDefaultValue());
     }
 
     @Override
@@ -70,6 +74,7 @@ public class StartListener  implements ApplicationListener<ContextRefreshedEvent
             configs.put(entry.getKey(), entry.getValue());
             configService.addConfig(entry.getKey(), entry.getValue());
         }
+        //todo:这里可以用Redis缓存
         Constant.setConfigMap(DEFAULT_CONFIGS);
     }
 }

@@ -23,46 +23,28 @@
 package run.micromall.micromall.db.system.properties;
 
 /**
- * 商城相关配置
+ * 存储相关配置
  *
  * @author songhaozhi
- * @since 2021/1/12
+ * @since 2021/1/14
  */
-public enum MallProperties implements Properties {
+public enum StorageProperties implements Properties {
     /**
-     * 商城名称
+     * 文件存储位置
      */
-    MICROMALL_MALL_NAME("micromall_mall_name", String.class, "微商城");
+    MICROMALL_FILE_STORAGE_LOCATION("micromall_file_storage_location",
+            StorageType.class, StorageType.LOCAL.name());
+
 
     private final String value;
     private final Class<?> type;
     private final String defaultValue;
 
-    MallProperties(String value, Class<?> type, String defaultValue) {
+    StorageProperties(String value, Class<?> type, String defaultValue) {
         this.defaultValue = defaultValue;
-        if (!isSupportedType(type)) {
-            throw new IllegalArgumentException("不支持该类型:" + type);
-        }
         this.value = value;
         this.type = type;
     }
-
-    static boolean isSupportedType(Class<?> type) {
-        if (type == null) {
-            return false;
-        }
-        return type.isAssignableFrom(String.class)
-                || type.isAssignableFrom(Number.class)
-                || type.isAssignableFrom(Integer.class)
-                || type.isAssignableFrom(Long.class)
-                || type.isAssignableFrom(Boolean.class)
-                || type.isAssignableFrom(Short.class)
-                || type.isAssignableFrom(Byte.class)
-                || type.isAssignableFrom(Double.class)
-                || type.isAssignableFrom(Float.class)
-                || type.isAssignableFrom(Enum.class);
-    }
-
 
     @Override
     public String getValue() {
