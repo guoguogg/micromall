@@ -22,6 +22,7 @@
  */
 package run.micromall.micromall.db.base;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -39,12 +40,12 @@ public class BaseEntity {
     /**
      * 添加时间
      */
-    @TableField(value = "add_time")
+    @TableField(value = "add_time",fill = FieldFill.INSERT)
     private LocalDateTime addTime;
     /**
-     * 添加时间
+     * 修改时间
      */
-    @TableField(value = "update_time")
+    @TableField(value = "update_time",fill = FieldFill.UPDATE)
     @JsonIgnore
     private LocalDateTime updateTime;
     /**

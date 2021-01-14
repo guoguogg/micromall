@@ -20,41 +20,31 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.db.system.model;
+package run.micromall.micromall.core.handers;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import run.micromall.micromall.db.base.BaseEntity;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.reflection.MetaObject;
+import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * 系统配置表
+ * mybatis-plus自动填充
  *
  * @author songhaozhi
- * @since 2021/1/12
+ * @since 2021/1/14
  */
-@EqualsAndHashCode(callSuper = true)
-@Data
-@TableName("micromall_config")
-public class MicroMallConfig extends BaseEntity implements Serializable {
-    /**
-     * 自增ID
-     */
-    @TableId(value = "sys_id", type = IdType.AUTO)
-    private Long sysId;
-    /**
-     * key
-     */
-    @TableField(value = "key_name")
-    private String keyName;
-    /**
-     * value
-     */
-    @TableField(value = "key_value")
-    private String keyValue;
+@Slf4j
+@Component
+public class MyMetaObjectHandler implements MetaObjectHandler {
+    @Override
+    public void insertFill(MetaObject metaObject) {
+        this.fillStrategy(metaObject, "addTime", LocalDateTime.now());
+    }
+
+    @Override
+    public void updateFill(MetaObject metaObject) {
+        this.fillStrategy(metaObject, "updateTime", LocalDateTime.now());
+    }
 }

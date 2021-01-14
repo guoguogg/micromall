@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * MicroMallConfigService
+ * 系统配置service
  *
  * @author songhaozhi
  * @since 2021/1/12
@@ -47,23 +47,45 @@ public class MicroMallConfigService {
 
     private final MicroMallConfigMapper configMapper;
 
-
-    public int addConfig(String key, String value){
+    /**
+     * 添加配置
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public int addConfig(String key, String value) {
         MicroMallConfig config = new MicroMallConfig();
         config.setKeyName(key);
         config.setKeyValue(value);
         return configMapper.insert(config);
     }
 
-    public Optional<Object> getByProperty(Properties properties) {
+    /**
+     * 通过Properties查询
+     *
+     * @param properties
+     * @return
+     */
+    public Optional<Object> getByProperties(Properties properties) {
         return getByKey(properties.getValue());
     }
 
+    /**
+     * 通过key查询配置
+     *
+     * @param key
+     * @return
+     */
     private Optional<Object> getByKey(String key) {
         return Optional.ofNullable(Constant.configMap.get(key));
     }
 
-
+    /**
+     * 查询所有配置
+     *
+     * @return map
+     */
     public Map<String, String> selectMap() {
         List<MicroMallConfig> microMallConfigs = configMapper.selectList(null);
         Map<String, String> systemConfigs = new HashMap<>();
