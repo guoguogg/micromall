@@ -22,7 +22,7 @@ public interface Properties extends Value<String> {
      */
     String getDefaultValue();
 
-    default <T> T convertTo(String value, Class<T> type) {
+    static <T> T convertTo(String value, Class<T> type) {
         if (ObjectUtils.isEmpty(value) || ObjectUtils.isEmpty(type)) {
             throw new RuntimeException("参数错误");
         }

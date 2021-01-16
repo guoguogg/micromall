@@ -1,4 +1,4 @@
-package run.micromall.micromall.core.response;
+package run.micromall.micromall.service.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

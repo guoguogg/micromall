@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 import run.micromall.micromall.db.base.Constant;
 import run.micromall.micromall.db.system.properties.MallProperties;
 import run.micromall.micromall.db.system.properties.StorageProperties;
-import run.micromall.micromall.service.system.MicroMallConfigService;
+import run.micromall.micromall.service.system.service.MicroMallConfigService;
 
 import java.util.HashMap;
 import java.util.Map;

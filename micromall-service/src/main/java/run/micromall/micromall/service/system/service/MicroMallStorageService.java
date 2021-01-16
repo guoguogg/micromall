@@ -20,15 +20,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.service.system;
+package run.micromall.micromall.service.system.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import run.micromall.micromall.db.base.Constant;
 import run.micromall.micromall.db.system.mapper.MicroMallConfigMapper;
+import run.micromall.micromall.db.system.mapper.MicroMallStorageMapper;
 import run.micromall.micromall.db.system.model.MicroMallConfig;
+import run.micromall.micromall.db.system.model.MicroMallStorage;
 import run.micromall.micromall.db.system.properties.Properties;
+import run.micromall.micromall.db.system.properties.StorageProperties;
+import run.micromall.micromall.service.response.ResponseUtil;
+import run.micromall.micromall.service.system.storage.StorageUpload;
+import run.micromall.micromall.service.system.storage.UploadFactory;
+import run.micromall.micromall.service.system.storage.UploadResult;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,55 +51,23 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MicroMallConfigService {
+public class MicroMallStorageService {
 
-    private final MicroMallConfigMapper configMapper;
+    private final MicroMallConfigService configService;
+
+    private final UploadFactory uploadFactory;
 
     /**
-     * 添加配置
+     * 上传文件
      *
-     * @param key
-     * @param value
+     * @param file
      * @return
      */
-    public int addConfig(String key, String value) {
-        MicroMallConfig config = new MicroMallConfig();
-        config.setKeyName(key);
-        config.setKeyValue(value);
-        return configMapper.insert(config);
-    }
-
-    /**
-     * 通过Properties查询
-     *
-     * @param properties
-     * @return
-     */
-    public Optional<Object> getByProperties(Properties properties) {
-        return getByKey(properties.getValue());
-    }
-
-    /**
-     * 通过key查询配置
-     *
-     * @param key
-     * @return
-     */
-    private Optional<Object> getByKey(String key) {
-        return Optional.ofNullable(Constant.configMap.get(key));
-    }
-
-    /**
-     * 查询所有配置
-     *
-     * @return map
-     */
-    public Map<String, String> selectMap() {
-        List<MicroMallConfig> microMallConfigs = configMapper.selectList(null);
-        Map<String, String> systemConfigs = new HashMap<>();
-        for (MicroMallConfig config : microMallConfigs) {
-            systemConfigs.put(config.getKeyName(), config.getKeyValue());
-        }
-        return systemConfigs;
+    public ResponseUtil upload(MultipartFile file) {
+        String type = configService.getByPropertyOrDefault(
+                StorageProperties.MICROMALL_FILE_STORAGE_LOCATION, String.class,
+                StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getDefaultValue());
+        UploadResult result = uploadFactory.getUpload(type).upload(file);
+        return ResponseUtil.ok(result);
     }
 }
