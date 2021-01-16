@@ -41,7 +41,11 @@ mvn clean package
 java -Dfile.encoding=UTF-8 -jar micromall-all/target/micromall-all.jar
 ```
 
-此时，浏览器打开，输入网址`http://localhost:9090`可以看到HelloWord
+此时，浏览器打开，输入网址`http://localhost:7878/admin`可以看到`hello admin`
+## 接口文档
+micromall没有采用swagger来生成文档，而是使用[smart-doc](https://gitee.com/smart-doc-team/smart-doc)来生成文档,
+访问`http://localhost:7878/static/doc/index.html` 可以查看API接口文档
+
 
 ## 后台功能
 
