@@ -22,17 +22,9 @@
  */
 package run.micromall.micromall.service.system.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import run.micromall.micromall.db.base.Constant;
-import run.micromall.micromall.db.system.mapper.MicroMallConfigMapper;
-import run.micromall.micromall.db.system.model.MicroMallConfig;
 import run.micromall.micromall.db.system.properties.Properties;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
