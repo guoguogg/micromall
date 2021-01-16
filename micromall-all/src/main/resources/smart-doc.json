@@ -1,0 +1,24 @@
+{
+  "adoc": false,
+  "allInOne": true,
+  "coverOld": true,
+  "dataDictionaries": [],
+  "md5EncryptedHtmlName": true,
+  "outPath": "src/main/resources/static/doc",
+  "packageFilters": "run.micromall.micromall.admin.controller,run.micromall.micromall.wx.controller",
+  "projectName": "micromall-API",
+  "requestHeaders": [
+    {
+      "desc": "Basic auth credentials(Global)",
+      "name": "Authorization",
+      "required": false,
+      "since": "-",
+      "type": "string"
+    }
+  ],
+  "revisionLogs": [],
+  "serverUrl": "http://ip:7878",
+  "showAuthor": true,
+  "skipTransientField": true,
+  "strict": true
+}

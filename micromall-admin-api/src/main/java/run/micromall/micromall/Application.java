@@ -33,8 +33,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author songhaozhi
  * @since 2021/1/4
  */
-@SpringBootApplication(scanBasePackages = {"run.micromall.micromall.admin",
-        "run.micromall.micromall.core","run.micromall.micromall.db"})
+@SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
 @MapperScan("run.micromall.micromall.db")
 @EnableTransactionManagement
 public class Application {

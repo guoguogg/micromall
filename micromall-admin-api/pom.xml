@@ -23,15 +23,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.github.shalousun</groupId>
+            <artifactId>smart-doc</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
     </dependencies>
 
     <!--MAVEN打包选择运行环境-->
@@ -56,6 +50,23 @@
     </profiles>
     <build>
         <finalName>micromall-admin-api</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.github.shalousun</groupId>
+                <artifactId>smart-doc-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
     <!-- aliyun maven -->
     <repositories>

@@ -1,2 +1,39 @@
 server:
-  port: 8091
+  port: 7878
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/micromall?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size:
+        1024MB
+      max-request-size:
+        1024MB
+  thymeleaf:
+    servlet:
+      content-type: text/html
+    encoding: UTF-8
+    cache: false
+mybatis-plus:
+  typeAliasesPackage: com.micromall.micromall.*.model.entity
+  mapperLocations: classpath:mapper/*.xml
+  #驼峰下划线转换
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: deleted  # 全局逻辑删除的实体字段名
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+
+
+
+

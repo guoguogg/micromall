@@ -35,7 +35,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/admin")
 public class AdminHelloController {
-
+    /**
+     * hello admin
+     *
+     * @return
+     */
     @GetMapping
     public String index() {
         return "hello admin";
