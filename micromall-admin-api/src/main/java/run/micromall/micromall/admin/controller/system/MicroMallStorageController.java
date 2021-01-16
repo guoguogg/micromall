@@ -24,17 +24,14 @@ package run.micromall.micromall.admin.controller.system;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import run.micromall.micromall.service.response.ResponseUtil;
 import run.micromall.micromall.service.system.service.MicroMallStorageService;
 import run.micromall.micromall.service.system.storage.UploadResult;
 
 /**
- * MicroMallStorageController
+ * 文件相关接口
  *
  * @author songhaozhi
  * @since 2021/1/14
@@ -54,6 +51,9 @@ public class MicroMallStorageController {
      */
     @PostMapping("/upload")
     public ResponseUtil<UploadResult> upload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseUtil.paramError();
+        }
         return storageService.upload(file);
     }
 

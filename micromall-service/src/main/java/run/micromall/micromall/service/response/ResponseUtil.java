@@ -99,7 +99,10 @@ public class ResponseUtil<T> implements Serializable {
 
     public static ResponseUtil fail(String msg) {
         return result(ResponseCode.FAIL, msg, null);
+    }
 
+    public static ResponseUtil paramError() {
+        return fail("参数错误");
     }
 
     public static ResponseUtil fail(String responseCode, String apiValue, Object value) {

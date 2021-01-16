@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author songhaozhi
- * @since 2021年1月5日20:21:53
+ * @since 2021/01/05
  */
 @SpringBootApplication(scanBasePackages = {"run.micromall.micromall"})
 @MapperScan("run.micromall.micromall.db")

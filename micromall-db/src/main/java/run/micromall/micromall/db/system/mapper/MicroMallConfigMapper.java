@@ -23,7 +23,7 @@
 package run.micromall.micromall.db.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import run.micromall.micromall.db.system.model.MicroMallConfig;
+import run.micromall.micromall.db.system.model.entity.MicroMallConfig;
 
 /**
  * MicroMallConfigMapper

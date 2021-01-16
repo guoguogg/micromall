@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import run.micromall.micromall.db.base.Constant;
 import run.micromall.micromall.db.system.mapper.MicroMallConfigMapper;
-import run.micromall.micromall.db.system.model.MicroMallConfig;
+import run.micromall.micromall.db.system.model.entity.MicroMallConfig;
 import run.micromall.micromall.db.system.properties.Properties;
 import run.micromall.micromall.service.system.service.MicroMallConfigService;
 

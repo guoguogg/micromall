@@ -20,7 +20,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.db.system.model;
+package run.micromall.micromall.db.system.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
