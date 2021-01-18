@@ -33,8 +33,17 @@ public enum StorageProperties implements Properties {
      * 文件存储位置
      */
     MICROMALL_FILE_STORAGE_LOCATION("micromall_file_storage_location",
-            StorageType.class, StorageType.LOCAL.name());
-
+            StorageType.class, StorageType.LOCAL.name()),
+    /**
+     * 图片压缩宽度
+     */
+    MICROMALL_FILE_THUMB_WIDTH("micromall_file_thumb_width",
+            Integer.class, "300"),
+    /**
+     * 图片压缩高度
+     */
+    MICROMALL_FILE_THUMB_HEIGHT("micromall_file_thumb_height",
+            Integer.class, "300");
 
     private final String value;
     private final Class<?> type;

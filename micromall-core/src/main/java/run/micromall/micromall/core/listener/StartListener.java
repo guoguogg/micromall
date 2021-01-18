@@ -59,8 +59,13 @@ public class StartListener  implements ApplicationListener<ContextRefreshedEvent
     static {
         DEFAULT_CONFIGS.put(MallProperties.MICROMALL_MALL_NAME.getValue(),
                 MallProperties.MICROMALL_MALL_NAME.getDefaultValue());
+        //附件部分
         DEFAULT_CONFIGS.put(StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getValue(),
                 StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getDefaultValue());
+        DEFAULT_CONFIGS.put(StorageProperties.MICROMALL_FILE_THUMB_WIDTH.getValue(),
+                StorageProperties.MICROMALL_FILE_THUMB_WIDTH.getDefaultValue());
+        DEFAULT_CONFIGS.put(StorageProperties.MICROMALL_FILE_THUMB_HEIGHT.getValue(),
+                StorageProperties.MICROMALL_FILE_THUMB_HEIGHT.getDefaultValue());
     }
 
     @Override

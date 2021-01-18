@@ -50,13 +50,13 @@ public class MicroMallStorage extends BaseEntity implements Serializable {
     /**
      * 附件名称
      */
-    @TableField(value = "name")
-    private String name;
+    @TableField(value = "file_name")
+    private String fileName;
     /**
      * 原图访问路径
      */
-    @TableField(value = "url")
-    private String url;
+    @TableField(value = "file_path")
+    private String filePath;
     /**
      * 略缩图路径
      */

@@ -22,13 +22,25 @@
  */
 package run.micromall.micromall.service.system.storage;
 
+import cn.hutool.core.date.DateUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import run.micromall.micromall.db.system.mapper.MicroMallStorageMapper;
+import run.micromall.micromall.db.base.Constant;
+import run.micromall.micromall.db.system.properties.StorageProperties;
+import run.micromall.micromall.service.system.service.MicroMallConfigService;
+import run.micromall.micromall.service.utils.FileUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 /**
  * 本地文件上传
@@ -41,12 +53,42 @@ import run.micromall.micromall.db.system.mapper.MicroMallStorageMapper;
 @Slf4j
 public class LocalStorage implements StorageUpload {
 
-    private final MicroMallStorageMapper storageMapper;
+    private final MicroMallConfigService configService;
+
+    @Value("${micromall.domain}")
+    private String domain;
 
     @Override
     public UploadResult upload(MultipartFile file) {
         log.debug("上传文件至本地。。。");
-        return null;
+        UploadResult result = new UploadResult();
+        try {
+            String originalFilename = file.getOriginalFilename();
+            String folder = DateUtil.thisYear() + File.separator + (DateUtil.thisMonth() + 1) + File.separator;
+            String location = Constant.UPLOAD_LOCATION + folder;
+            log.debug("location:{}", location);
+            Path rootLocation = Paths.get(location);
+            Files.createDirectories(rootLocation);
+            String suffix = originalFilename.substring(originalFilename.indexOf("."));
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + suffix;
+            Files.copy(file.getInputStream(), rootLocation.resolve(fileName));
+            Thumbnails.of(file.getInputStream()).size(
+                    configService.getByPropertyOrDefault(StorageProperties.MICROMALL_FILE_THUMB_WIDTH, Integer.class, 300),
+                    configService.getByPropertyOrDefault(StorageProperties.MICROMALL_FILE_THUMB_HEIGHT, Integer.class, 300))
+                    .keepAspectRatio(false).toFile(new File(location + uuid + "_small" + suffix));
+
+            result.setFileName(fileName);
+            result.setMediaType(file.getContentType());
+            result.setSuffix(suffix);
+            result.setFilePath(domain + "upload/" + folder.replace("\\", "/") + fileName);
+            result.setThumbUrl(domain + "upload/" + folder.replace("\\", "/") + uuid + "_small" + suffix);
+            result.setSize(FileUtil.parseSize(file.getSize()));
+        } catch (IOException e) {
+            log.error("上传文件失败", e);
+            throw new RuntimeException("上传文件失败");
+        }
+        return result;
     }
 
 }

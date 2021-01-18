@@ -20,35 +20,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.db.base;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+package run.micromall.micromall.service.utils;
 
 /**
- * Constant
+ * FileUtil
  *
  * @author songhaozhi
- * @since 2021/1/12
+ * @since 2021/1/18
  */
-public class Constant {
+public class FileUtil extends cn.hutool.core.io.FileUtil {
     /**
-     * 上传文件夹
+     * 转换文件大小
+     *
+     * @param size
+     * @return
      */
-    public static final String FOLDER = "micromall" + File.separator + "upload" + File.separator;
-    /**
-     * 文件上传位置
-     */
-    public static final String UPLOAD_LOCATION = System.getProperties()
-            .getProperty("user.home") + File.separator + FOLDER;
-    /**
-     * 所有配置都缓存在这个Map
-     */
-    public static Map<String, String> configMap = new HashMap<>();
-
-    public static void setConfigMap(Map<String, String> configMap) {
-        Constant.configMap = configMap;
+    public static String parseSize(long size) {
+        if (size < 1024) {
+            return String.valueOf(size) + "B";
+        } else {
+            size = size / 1024;
+        }
+        if (size < 1024) {
+            return String.valueOf(size) + "KB";
+        } else {
+            size = size / 1024;
+        }
+        if (size < 1024) {
+            size = size * 100;
+            return String.valueOf((size / 100)) + "." + String.valueOf((size % 100)) + "MB";
+        } else {
+            size = size * 100 / 1024;
+            return String.valueOf((size / 100)) + "." + String.valueOf((size % 100)) + "GB";
+        }
     }
 }
-

@@ -14,10 +14,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2021/01/16
  */
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UploadFactory {
 
-    private final Map<String, StorageUpload> uploadMap = new ConcurrentHashMap<>();
+    @Autowired
+    private Map<String, StorageUpload> uploadMap = new ConcurrentHashMap<>();
 
     public StorageUpload getUpload(String component) {
         StorageUpload upload = uploadMap.get(component);

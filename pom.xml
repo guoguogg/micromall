@@ -40,6 +40,7 @@
         <projectlombok.version>1.18.16</projectlombok.version>
         <validation.version>2.0.1.Final</validation.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
+        <thumbnailator.version>0.4.13</thumbnailator.version>
     </properties>
 
     <licenses>
@@ -93,6 +94,11 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${validation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>

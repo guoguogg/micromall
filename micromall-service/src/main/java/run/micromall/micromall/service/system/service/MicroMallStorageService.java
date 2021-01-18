@@ -23,9 +23,12 @@
 package run.micromall.micromall.service.system.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import run.micromall.micromall.db.system.mapper.MicroMallStorageMapper;
+import run.micromall.micromall.db.system.model.entity.MicroMallStorage;
 import run.micromall.micromall.db.system.properties.StorageProperties;
 import run.micromall.micromall.service.response.ResponseUtil;
 import run.micromall.micromall.service.system.storage.UploadFactory;
@@ -43,6 +46,8 @@ public class MicroMallStorageService {
 
     private final MicroMallConfigService configService;
 
+    private final MicroMallStorageMapper storageMapper;
+
     private final UploadFactory uploadFactory;
 
     /**
@@ -56,6 +61,9 @@ public class MicroMallStorageService {
                 StorageProperties.MICROMALL_FILE_STORAGE_LOCATION, String.class,
                 StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getDefaultValue());
         UploadResult result = uploadFactory.getUpload(type).upload(file);
+        MicroMallStorage storage = new MicroMallStorage();
+        BeanUtils.copyProperties(result, storage);
+        storageMapper.insert(storage);
         return ResponseUtil.ok(result);
     }
 }
