@@ -80,6 +80,6 @@ public class StartListener  implements ApplicationListener<ContextRefreshedEvent
             configService.addConfig(entry.getKey(), entry.getValue());
         }
         //todo:这里可以用Redis缓存
-        Constant.setConfigMap(DEFAULT_CONFIGS);
+        Constant.setConfigMap(configs);
     }
 }
