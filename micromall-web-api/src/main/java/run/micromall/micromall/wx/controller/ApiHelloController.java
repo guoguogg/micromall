@@ -38,7 +38,7 @@ public class ApiHelloController {
 
     @GetMapping
     public String index() {
-        return "hello wx";
+        return "hello world";
     }
 
 }
