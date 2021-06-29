@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.micromall.micromall.db.system.mapper.MicroMallAdminMapper">
+    <sql id="Base_Column_List">
+        id,
+            username,
+            nick_name,
+            `password`,
+            last_login_ip,
+            last_login_time,
+            avatar,
+            role_ids,
+            add_time,
+            update_time,
+            deleted
+    </sql>
+    <resultMap id="BaseResultMap" type="run.micromall.micromall.db.system.model.entity.MicroMallAdmin">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="password" property="password"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="avatar" property="avatar"/>
+        <result column="role_ids" property="roleIds"
+                typeHandler="run.micromall.micromall.db.mybatis.JsonLongArrayTypeHandler"/>
+        <result column="add_time" property="addTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
+
+    <select id="list" resultMap="BaseResultMap">
+        select *
+        from micromall_admin ${ew.customSqlSegment}
+    </select>
+
+    <insert id="insertSelective">
+        INSERT INTO micromall_admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">id,</if>
+            <if test="username!=null">username,</if>
+            <if test="nickName!=null">nick_name,</if>
+            <if test="password!=null">password,</if>
+            <if test="lastLoginIp!=null">last_login_ip,</if>
+            <if test="lastLoginTime!=null">last_login_time,</if>
+            <if test="avatar!=null">avatar,</if>
+            <if test="roleIds!=null">role_ids,</if>
+            <if test="addTime!=null">add_time,</if>
+            <if test="updateTime!=null">update_time,</if>
+            <if test="deleted!=null">deleted</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="username!=null">#{username},</if>
+            <if test="nickName!=null">#{nickName},</if>
+            <if test="password!=null">#{password},</if>
+            <if test="lastLoginIp!=null">#{lastLoginIp},</if>
+            <if test="lastLoginTime!=null">#{lastLoginTime},</if>
+            <if test="avatar!=null">#{avatar},</if>
+            <if test="roleIds != null">
+                #{roleIds,jdbcType=VARCHAR,typeHandler=run.micromall.micromall.db.mybatis.JsonLongArrayTypeHandler},
+            </if>
+            <if test="addTime!=null">#{addTime},</if>
+            <if test="updateTime!=null">#{updateTime},</if>
+            <if test="deleted!=null">#{deleted}</if>
+        </trim>
+    </insert>
+
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from micromall_admin
+        where username=#{username} and deleted = false
+    </select>
+
+    <update id="updateLastLoginIpAndLastLoginTimeById">
+        update micromall_admin
+        set last_login_ip=#{updatedLastLoginIp}, last_login_time=#{updatedLastLoginTime}
+        where id=#{id}
+    </update>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from micromall_admin
+        where id=#{id} and deleted = false
+    </select>
+
+    <update id="updateById">
+        update micromall_admin
+        <set>
+            <if test="updated.username != null">
+                username = #{updated.username},
+            </if>
+            <if test="updated.nickName != null">
+                nick_name = #{updated.nickName},
+            </if>
+            <if test="updated.password != null">
+                password = #{updated.password},
+            </if>
+            <if test="updated.lastLoginIp != null">
+                last_login_ip = #{updated.lastLoginIp},
+            </if>
+            <if test="updated.lastLoginTime != null">
+                last_login_time = #{updated.lastLoginTime},
+            </if>
+            <if test="updated.avatar != null">
+                avatar = #{updated.avatar},
+            </if>
+            <if test="updated.roleIds != null">
+               role_ids = #{updated.roleIds,jdbcType=VARCHAR,typeHandler=run.micromall.micromall.db.mybatis.JsonLongArrayTypeHandler},
+            </if>
+            <if test="updated.addTime != null">
+                add_time = #{updated.addTime},
+            </if>
+            <if test="updated.updateTime != null">
+                update_time = #{updated.updateTime},
+            </if>
+            <if test="updated.deleted != null">
+                deleted = #{updated.deleted},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+</mapper>

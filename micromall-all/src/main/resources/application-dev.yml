@@ -2,7 +2,7 @@ micromall:
   domain: "http://localhost:7878/" #上传文件使用，末尾有/
 
 server:
-  port: 7878
+  port: 7879
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
@@ -23,7 +23,7 @@ spring:
     cache: false
 mybatis-plus:
   typeAliasesPackage: com.micromall.micromall.*.model.entity
-  mapperLocations: classpath:mapper/*.xml
+  mapperLocations: classpath:mapper/*/*.xml
   #驼峰下划线转换
   configuration:
     map-underscore-to-camel-case: true

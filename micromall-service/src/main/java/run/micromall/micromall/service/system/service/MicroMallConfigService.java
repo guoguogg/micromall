@@ -37,6 +37,10 @@ import java.util.Optional;
 @Service
 public interface MicroMallConfigService {
 
+    void save(Map<String, String> map);
+
+    void saveOption(String key, String value);
+
     /**
      * 添加配置
      *

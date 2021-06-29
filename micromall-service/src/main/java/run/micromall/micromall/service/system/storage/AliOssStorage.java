@@ -43,4 +43,9 @@ public class AliOssStorage implements StorageUpload {
         log.debug("阿里云oss上传。。。。");
         return null;
     }
+
+    @Override
+    public void delete(String key) {
+
+    }
 }

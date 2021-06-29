@@ -1,4 +1,4 @@
-package run.micromall.micromall.db.system.model.validation;
+package run.micromall.micromall.db.validation;
 /**
  * 添加分组验证
  *

@@ -16,5 +16,10 @@ public interface StorageUpload {
      * @return
      */
     UploadResult upload(@NonNull MultipartFile file);
-
+    /**
+     * 通过key删除文件
+     *
+     * @param key
+     */
+    void delete(String key);
 }

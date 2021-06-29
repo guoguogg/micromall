@@ -34,6 +34,11 @@ import java.util.Map;
  */
 public class Constant {
     /**
+     * 根目录
+     */
+    public static final String ROOT = System.getProperties()
+            .getProperty("user.home");
+    /**
      * 上传文件夹
      */
     public static final String FOLDER = "micromall" + File.separator + "upload" + File.separator;

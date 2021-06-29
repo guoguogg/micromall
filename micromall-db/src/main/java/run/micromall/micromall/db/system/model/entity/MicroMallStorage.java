@@ -48,6 +48,11 @@ public class MicroMallStorage extends BaseEntity implements Serializable {
     @TableId(value = "storage_id", type = IdType.AUTO)
     private Long storageId;
     /**
+     * key
+     */
+    @TableField(value = "`key`")
+    private String key;
+    /**
      * 附件名称
      */
     @TableField(value = "file_name")
@@ -81,5 +86,5 @@ public class MicroMallStorage extends BaseEntity implements Serializable {
      * 存储位置
      */
     @TableField(value = "type")
-    private Integer type;
+    private String type;
 }

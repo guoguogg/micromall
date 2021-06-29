@@ -22,11 +22,17 @@
  */
 package run.micromall.micromall.service.system.service;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import run.micromall.micromall.db.base.BaseEntity;
 import run.micromall.micromall.db.system.mapper.MicroMallStorageMapper;
 import run.micromall.micromall.db.system.model.entity.MicroMallStorage;
 import run.micromall.micromall.db.system.properties.StorageProperties;
@@ -65,5 +71,34 @@ public class MicroMallStorageService {
         BeanUtils.copyProperties(result, storage);
         storageMapper.insert(storage);
         return ResponseUtil.ok(result);
+    }
+    /**
+     * 附件分页列表
+     *
+     * @param name
+     * @param page
+     * @param limit
+     * @return
+     */
+    public PageInfo<MicroMallStorage> list(String name, Integer page, Integer limit) {
+        PageHelper.startPage(page, limit);
+        LambdaQueryWrapper<MicroMallStorage> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(StrUtil.isNotBlank(name), MicroMallStorage::getFileName, name);
+        wrapper.orderByDesc(BaseEntity::getAddTime);
+        return new PageInfo<>(storageMapper.selectList(wrapper));
+    }
+
+    /**
+     * 删除文件
+     *
+     * @param id
+     * @return
+     */
+    public MicroMallStorage delete(Long id) {
+        MicroMallStorage storage = storageMapper.selectById(id);
+        if (storageMapper.deleteById(id) > 0) {
+            uploadFactory.getUpload(storage.getType()).delete(storage.getKey());
+        }
+        return storage;
     }
 }

@@ -34,3 +34,13 @@ build/
 /.mvn/
 /mvnw
 /mvnw.cmd
+micromall-admin-api/src/test/
+micromall-all/src/test/
+micromall-core/src/main/resources/
+micromall-core/src/test/
+micromall-db/src/test/
+micromall-service/src/main/resources/
+micromall-service/src/test/
+micromall-web-api/src/main/resources/
+micromall-web-api/src/test/
+/logs/

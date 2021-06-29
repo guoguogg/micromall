@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import run.micromall.micromall.service.response.ResponseCode;
 import run.micromall.micromall.service.response.ResponseUtil;
+import static run.micromall.micromall.service.response.ResponseUtil.ResponseCode;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;

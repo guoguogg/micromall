@@ -23,6 +23,7 @@
 package run.micromall.micromall.service.system.storage;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
@@ -34,6 +35,7 @@ import run.micromall.micromall.db.base.Constant;
 import run.micromall.micromall.db.system.properties.StorageProperties;
 import run.micromall.micromall.service.system.service.MicroMallConfigService;
 import run.micromall.micromall.service.utils.FileUtil;
+import run.micromall.micromall.service.utils.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +56,8 @@ import java.util.UUID;
 public class LocalStorage implements StorageUpload {
 
     private final MicroMallConfigService configService;
+
+    private static final String THUMBNAIL_SUFFIX = "-thumbnail";
 
     @Value("${micromall.domain}")
     private String domain;
@@ -91,4 +95,34 @@ public class LocalStorage implements StorageUpload {
         return result;
     }
 
+    @Override
+    public void delete(String key) {
+        if(StrUtil.isBlank(key)){
+            throw new IllegalArgumentException("参数异常");
+        }
+        Path path = Paths.get(Constant.ROOT + key);
+        log.debug(path.toString());
+        try {
+            Files.deleteIfExists(path);
+        } catch (IOException e) {
+            throw new RuntimeException("附件 " + key + " 删除失败", e);
+        }
+        String basename = FilenameUtils.getBasename(key);
+        String extension = FilenameUtils.getExtension(key);
+        // 获取缩略图名称
+        String thumbnailName = basename + THUMBNAIL_SUFFIX + '.' + extension;
+
+        // 获取缩略图路径
+        Path thumbnailPath = Paths.get(path.getParent().toString(), thumbnailName);
+
+        // 删除略缩图
+        try {
+            boolean deleteResult = Files.deleteIfExists(thumbnailPath);
+            if (!deleteResult) {
+                log.warn("Thumbnail: [{}] may not exist", thumbnailPath.toString());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("附件缩略图 " + thumbnailName + " 删除失败", e);
+        }
+    }
 }

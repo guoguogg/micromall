@@ -22,10 +22,15 @@
  */
 package run.micromall.micromall.admin.controller.system;
 
+import cn.hutool.core.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
+import run.micromall.micromall.db.base.IdParam;
+import run.micromall.micromall.db.system.model.entity.MicroMallStorage;
 import run.micromall.micromall.service.response.ResponseUtil;
 import run.micromall.micromall.service.system.service.MicroMallStorageService;
 import run.micromall.micromall.service.system.storage.UploadResult;
@@ -42,7 +47,38 @@ import run.micromall.micromall.service.system.storage.UploadResult;
 public class MicroMallStorageController {
 
     private final MicroMallStorageService storageService;
+    /**
+     * 附件分页列表
+     *
+     * @param name
+     * @param page
+     * @param limit
+     * @return
+     */
+    @GetMapping("/getStorageList")
+    @RequiresPermissions("admin:storage:list")
+    @RequiresPermissionsDesc(menu = {"系统管理", "附件管理"}, button = "附件查询")
+    public ResponseUtil<MicroMallStorage> list(String name,
+                                              @RequestParam(defaultValue = "1") Integer page,
+                                              @RequestParam(defaultValue = "10") Integer limit) {
+        return ResponseUtil.ok(storageService.list(name, page, limit));
+    }
 
+    /**
+     * 附件删除
+     *
+     * @param param
+     * @return
+     */
+    @DeleteMapping("/delete")
+    @RequiresPermissions("admin:storage:delete")
+    @RequiresPermissionsDesc(menu = {"系统管理", "附件管理"}, button = "附件删除")
+    public ResponseUtil<MicroMallStorage> delete(IdParam param) {
+        if (ObjectUtil.isNull(param)) {
+            return ResponseUtil.paramError();
+        }
+        return ResponseUtil.ok(storageService.delete(param.getId()));
+    }
     /**
      * 上传文件
      *
