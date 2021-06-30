@@ -11,6 +11,7 @@ import lombok.experimental.Accessors;
 import run.micromall.micromall.db.base.BaseEntity;
 
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 

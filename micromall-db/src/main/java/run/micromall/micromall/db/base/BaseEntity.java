@@ -27,6 +27,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -36,7 +37,10 @@ import java.time.LocalDateTime;
  * @since 2021/1/12
  */
 @Data
-public class BaseEntity {
+public class BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = -4528595239238220613L;
+
     /**
      * 添加时间
      */
