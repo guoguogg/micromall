@@ -36,9 +36,9 @@ import run.micromall.micromall.db.base.BaseEntity;
 import run.micromall.micromall.db.system.mapper.MicroMallStorageMapper;
 import run.micromall.micromall.db.system.model.entity.MicroMallStorage;
 import run.micromall.micromall.db.system.properties.StorageProperties;
-import run.micromall.micromall.service.response.ResponseUtil;
 import run.micromall.micromall.service.system.storage.UploadFactory;
 import run.micromall.micromall.service.system.storage.UploadResult;
+import run.micromall.micromall.service.utils.ResponseUtil;
 
 /**
  * 系统配置service
@@ -62,7 +62,7 @@ public class MicroMallStorageService {
      * @param file
      * @return
      */
-    public ResponseUtil upload(MultipartFile file) {
+    public UploadResult upload(MultipartFile file) {
         String type = configService.getByPropertyOrDefault(
                 StorageProperties.MICROMALL_FILE_STORAGE_LOCATION, String.class,
                 StorageProperties.MICROMALL_FILE_STORAGE_LOCATION.getDefaultValue());
@@ -70,7 +70,7 @@ public class MicroMallStorageService {
         MicroMallStorage storage = new MicroMallStorage();
         BeanUtils.copyProperties(result, storage);
         storageMapper.insert(storage);
-        return ResponseUtil.ok(result);
+        return result;
     }
     /**
      * 附件分页列表

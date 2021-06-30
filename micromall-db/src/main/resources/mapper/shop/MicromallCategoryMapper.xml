@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.micromall.micromall.db.shop.mapper.MicromallCategoryMapper">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        category_id, category_name, category_desc, pid, icon_url, pic_url, sort_order, add_time, update_time, deleted
+    </sql>
+
+    <select id="list" resultType="run.micromall.micromall.db.shop.model.entity.MicromallCategory">
+        select
+        <include refid="Base_Column_List"/>
+        from micromall_category
+        ${ew.customSqlSegment}
+    </select>
+
+</mapper>

@@ -26,14 +26,15 @@ import cn.hutool.core.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.db.base.IdParam;
 import run.micromall.micromall.db.system.model.entity.MicroMallStorage;
-import run.micromall.micromall.service.response.ResponseUtil;
 import run.micromall.micromall.service.system.service.MicroMallStorageService;
 import run.micromall.micromall.service.system.storage.UploadResult;
+import run.micromall.micromall.service.utils.ResponseUtil;
 
 /**
  * 文件相关接口
@@ -73,10 +74,7 @@ public class MicroMallStorageController {
     @DeleteMapping("/delete")
     @RequiresPermissions("admin:storage:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "附件管理"}, button = "附件删除")
-    public ResponseUtil<MicroMallStorage> delete(IdParam param) {
-        if (ObjectUtil.isNull(param)) {
-            return ResponseUtil.paramError();
-        }
+    public ResponseUtil<MicroMallStorage> delete(@Validated IdParam param) {
         return ResponseUtil.ok(storageService.delete(param.getId()));
     }
     /**
@@ -90,7 +88,7 @@ public class MicroMallStorageController {
         if (file.isEmpty()) {
             return ResponseUtil.paramError();
         }
-        return storageService.upload(file);
+        return ResponseUtil.ok(storageService.upload(file));
     }
 
 }

@@ -63,7 +63,7 @@ public class AdminRoleController {
                                                    @RequestParam(defaultValue = "10") Integer limit,
                                                    @Sort(accepts = {"add_time"}) @RequestParam(defaultValue = "add_time") String sort,
                                                    @Order @RequestParam(defaultValue = "desc") String order) {
-        return roleService.getRoleList(name, page, limit, sort, order);
+        return ResponseUtil.ok(roleService.getRoleList(name, page, limit, sort, order));
     }
 
     /**

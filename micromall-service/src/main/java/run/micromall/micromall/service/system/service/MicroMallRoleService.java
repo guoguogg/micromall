@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import run.micromall.micromall.db.system.mapper.MicroMallRoleMapper;
 import run.micromall.micromall.db.system.model.entity.MicroMallRole;
-import run.micromall.micromall.service.response.ResponseUtil;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,7 +28,7 @@ import java.util.Set;
 public class MicroMallRoleService {
     private final MicroMallRoleMapper roleMapper;
 
-    public ResponseUtil getRoleList(String name, Integer page, Integer limit, String sort, String order) {
+    public PageInfo<MicroMallRole> getRoleList(String name, Integer page, Integer limit, String sort, String order) {
         PageHelper.startPage(page, limit);
         QueryWrapper<String> wrapper = Wrappers.query();
 
@@ -38,7 +37,7 @@ public class MicroMallRoleService {
         wrapper.orderBy(StrUtil.isNotBlank(sort) && StrUtil.isNotBlank(order), !"desc".equals(order), sort);
         wrapper.eq("deleted", 0);
         List<MicroMallRole> roles = roleMapper.getRoleList(wrapper);
-        return ResponseUtil.ok(new PageInfo<>(roles));
+        return new PageInfo<>(roles);
     }
 
     public Set<String> queryByIds(Long[] roleIds) {

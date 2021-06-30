@@ -4,11 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import run.micromall.micromall.service.response.ResponseUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static run.micromall.micromall.service.response.ResponseUtil.ResponseCode;
+
+import run.micromall.micromall.service.utils.ResponseUtil;
+
+import static run.micromall.micromall.service.utils.ResponseUtil.ResponseCode;
 
 /**
  * 全局Error/404处理

@@ -1,4 +1,4 @@
-package run.micromall.micromall.service.response;
+package run.micromall.micromall.service.utils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

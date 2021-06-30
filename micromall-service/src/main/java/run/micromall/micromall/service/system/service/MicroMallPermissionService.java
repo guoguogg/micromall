@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import run.micromall.micromall.db.system.mapper.MicroMallPermissionMapper;
 import run.micromall.micromall.db.system.model.entity.MicroMallPermission;
-import run.micromall.micromall.service.response.ResponseUtil;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,10 +23,6 @@ import java.util.Set;
 public class MicroMallPermissionService {
 
     private final MicroMallPermissionMapper permissionMapper;
-
-    public ResponseUtil getPermissionList(MicroMallPermission microMallPermission, Integer page, Integer limit) {
-        return ResponseUtil.ok();
-    }
 
     /**
      * 检查角色是否有超级权限
