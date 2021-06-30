@@ -23,7 +23,6 @@
 package run.micromall.micromall.core.listener;
 
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,6 @@ import run.micromall.micromall.db.system.properties.MallProperties;
 import run.micromall.micromall.db.system.properties.StorageProperties;
 import run.micromall.micromall.service.system.service.MicroMallConfigService;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,7 +79,6 @@ public class StartListener implements ApplicationListener<ContextRefreshedEvent>
                 StorageProperties.MICROMALL_FILE_THUMB_HEIGHT.getDefaultValue());
     }
 
-    @SneakyThrows
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
@@ -103,17 +99,13 @@ public class StartListener implements ApplicationListener<ContextRefreshedEvent>
 
     /**
      * 初始化sql脚本
-     *
-     * @throws SQLException
      */
-    private void migrate() throws SQLException {
+    private void migrate() {
         Flyway flyway = Flyway
                 .configure()
                 .locations("classpath:/db/migration")
                 .dataSource(url, username, password)
                 .load();
         flyway.migrate();
-        Connection connection = flyway.getConfiguration().getDataSource().getConnection();
-        connection.close();
     }
 }
