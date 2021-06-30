@@ -20,7 +20,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.admin.controller.system;
+package run.micromall.micromall.admin.system.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;

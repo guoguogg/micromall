@@ -1,4 +1,4 @@
-package run.micromall.micromall.admin.controller.system;
+package run.micromall.micromall.admin.system.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import run.micromall.micromall.admin.model.request.UpdatePermissionsRequest;
+import run.micromall.micromall.admin.system.model.request.UpdatePermissionsRequest;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.core.shiro.PermVo;
 import run.micromall.micromall.core.shiro.Permission;

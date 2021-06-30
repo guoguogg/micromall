@@ -1,4 +1,4 @@
-package run.micromall.micromall.admin.controller.system;
+package run.micromall.micromall.admin.system.controller;
 
 import com.power.common.util.IpUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import run.micromall.micromall.admin.model.request.LoginRequest;
+import run.micromall.micromall.admin.system.model.request.LoginRequest;
+import run.micromall.micromall.admin.system.model.response.InfoResponse;
+import run.micromall.micromall.admin.system.model.response.LoginResponse;
 import run.micromall.micromall.core.shiro.Permission;
 import run.micromall.micromall.core.shiro.PermissionUtil;
 import run.micromall.micromall.db.system.model.entity.MicroMallAdmin;
@@ -54,7 +56,6 @@ public class AdminAuthController {
     public ResponseUtil login(@Validated @RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
-
         Subject currentUser = SecurityUtils.getSubject();
         try {
             currentUser.login(new UsernamePasswordToken(username, password));
@@ -62,7 +63,6 @@ public class AdminAuthController {
             return ResponseUtil.fail("用户帐号或密码不正确");
         } catch (LockedAccountException lae) {
             return ResponseUtil.fail("用户帐号已锁定不可用");
-
         } catch (AuthenticationException ae) {
             return ResponseUtil.fail("认证失败");
         }
@@ -71,14 +71,12 @@ public class AdminAuthController {
         adminService.updateLastLoginIpAndLastLoginTimeById(IpUtil.getIpAddr(request),LocalDateTime.now(),admin.getId());
         //设置session过期时间为一天
         currentUser.getSession().setTimeout(7200000L);
-        // userInfo
-        Map<String, Object> adminInfo = new HashMap<>();
-        adminInfo.put("nickName", admin.getUsername());
-        adminInfo.put("avatar", admin.getAvatar());
-        Map<Object, Object> result = new HashMap<>();
-        result.put("token", currentUser.getSession().getId());
-        result.put("adminInfo", adminInfo);
-        return ResponseUtil.ok(result);
+
+        LoginResponse response = new LoginResponse();
+        response.setNickName(admin.getUsername());
+        response.setAvatar(admin.getAvatar());
+        response.setToken(currentUser.getSession().getId().toString());
+        return ResponseUtil.ok(response);
     }
 
     /**
@@ -99,6 +97,7 @@ public class AdminAuthController {
     public ResponseUtil notAuthorized() {
         return ResponseUtil.notAuthorized();
     }
+
     @RequiresAuthentication
     @GetMapping("/not/login")
     public ResponseUtil notLogin() {
@@ -114,29 +113,28 @@ public class AdminAuthController {
     public ResponseUtil info() {
         Subject currentUser = SecurityUtils.getSubject();
         MicroMallAdmin admin = (MicroMallAdmin) currentUser.getPrincipal();
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("name", admin.getUsername());
-        data.put("avatar", admin.getAvatar());
-
         Long[] roleIds = admin.getRoleIds();
         Set<String> roles = roleService.queryByIds(roleIds);
         Set<String> permissions = permissionService.queryByRoleIds(roleIds);
-        data.put("roles", roles);
+
+        InfoResponse response = new InfoResponse();
+        response.setNickName(admin.getUsername());
+        response.setAvatar(admin.getAvatar());
+        response.setRoles(roles);
         // NOTE
         // 这里需要转换perms结构，因为对于前端而已API形式的权限更容易理解
-        data.put("perms", toApi(permissions));
-        return ResponseUtil.ok(data);
+        response.setPerms(toApi(permissions));
+        return ResponseUtil.ok(response);
     }
 
     @Autowired
     private ApplicationContext context;
     private HashMap<String, String> systemPermissionsMap = null;
 
-    private Collection<String> toApi(Set<String> permissions) {
+    private HashSet<String> toApi(Set<String> permissions) {
         if (systemPermissionsMap == null) {
             systemPermissionsMap = new HashMap<>();
-            final String basicPackage = "com.MicroMall.MicroMall.admin";
+            final String basicPackage = "com.micromall.micromall.admin";
             List<Permission> systemPermissions = PermissionUtil.listPermission(context, basicPackage);
             for (Permission permission : systemPermissions) {
                 String perm = permission.getRequiresPermissions().value()[0];
@@ -145,7 +143,7 @@ public class AdminAuthController {
             }
         }
 
-        Collection<String> apis = new HashSet<>();
+        HashSet<String> apis = new HashSet<>();
         for (String perm : permissions) {
             String api = systemPermissionsMap.get(perm);
             apis.add(api);

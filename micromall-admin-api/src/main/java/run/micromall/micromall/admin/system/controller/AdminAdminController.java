@@ -1,4 +1,4 @@
-package run.micromall.micromall.admin.controller.system;
+package run.micromall.micromall.admin.system.controller;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

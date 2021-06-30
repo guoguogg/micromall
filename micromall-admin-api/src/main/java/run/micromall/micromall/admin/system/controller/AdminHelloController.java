@@ -20,7 +20,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package run.micromall.micromall.admin.controller;
+package run.micromall.micromall.admin.system.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package run.micromall.micromall.admin.model.request;
+package run.micromall.micromall.admin.system.model.request;
 
 import lombok.Data;
 
