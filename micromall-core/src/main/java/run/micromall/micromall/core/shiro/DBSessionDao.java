@@ -1,5 +1,6 @@
 package run.micromall.micromall.core.shiro;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.SimpleSession;
@@ -16,11 +17,11 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class DBSessionDao implements SessionDAO {
     private Map<Object, Session> sessionMap = new ConcurrentHashMap<>();
 
-    @Autowired
-    private ShiroSessionService shiroSessionService;
+    private final ShiroSessionService shiroSessionService;
 
     @Override
     public Serializable create(Session session) {

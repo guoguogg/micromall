@@ -31,6 +31,4 @@ public interface MicroMallAdminMapper extends BaseMapper<MicroMallAdmin> {
 
     int updateById(@Param("updated") MicroMallAdmin updated, @Param("id") Long id);
 
-
-
 }

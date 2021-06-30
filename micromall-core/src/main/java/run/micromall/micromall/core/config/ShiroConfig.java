@@ -1,5 +1,6 @@
 package run.micromall.micromall.core.config;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -22,9 +23,10 @@ import java.util.Map;
  * @author Administrator
  */
 @Configuration
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class ShiroConfig {
-    @Autowired
-    private DBSessionDao dbSessionDao;
+
+    private final DBSessionDao dbSessionDao;
 
     @Bean
     public Realm realm() {
