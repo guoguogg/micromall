@@ -42,10 +42,4 @@ public class GlobalErrorController implements ErrorController {
         }
         return ResponseUtil.fail(ResponseCode.FAIL);
     }
-
-    @Override
-    public String getErrorPath() {
-        log.error("errorPath....");
-        return ERROR_PATH;
-    }
 }

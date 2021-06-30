@@ -23,8 +23,11 @@
 package run.micromall.micromall.core.listener;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.env.Environment;
@@ -34,6 +37,8 @@ import run.micromall.micromall.db.system.properties.MallProperties;
 import run.micromall.micromall.db.system.properties.StorageProperties;
 import run.micromall.micromall.service.system.service.MicroMallConfigService;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,11 +51,20 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Slf4j
-public class StartListener  implements ApplicationListener<ContextRefreshedEvent> {
+public class StartListener implements ApplicationListener<ContextRefreshedEvent> {
 
     private final Environment environment;
 
     private final MicroMallConfigService configService;
+
+    @Value("${spring.datasource.url}")
+    private String url;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
     /**
      * 默认配置
      */
@@ -68,9 +82,13 @@ public class StartListener  implements ApplicationListener<ContextRefreshedEvent
                 StorageProperties.MICROMALL_FILE_THUMB_HEIGHT.getDefaultValue());
     }
 
+    @SneakyThrows
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        // 1. 读取数据库全部配置信息
+
+        this.migrate();
+
+        //读取数据库全部配置信息
         Map<String, String> configs = configService.selectMap();
         for (Map.Entry<String, String> entry : DEFAULT_CONFIGS.entrySet()) {
             if (configs.containsKey(entry.getKey())) {
@@ -81,5 +99,21 @@ public class StartListener  implements ApplicationListener<ContextRefreshedEvent
         }
         //todo:这里可以用Redis缓存
         Constant.setConfigMap(configs);
+    }
+
+    /**
+     * 初始化sql脚本
+     *
+     * @throws SQLException
+     */
+    private void migrate() throws SQLException {
+        Flyway flyway = Flyway
+                .configure()
+                .locations("classpath:/db/migration")
+                .dataSource(url, username, password)
+                .load();
+        flyway.migrate();
+        Connection connection = flyway.getConfiguration().getDataSource().getConnection();
+        connection.close();
     }
 }
