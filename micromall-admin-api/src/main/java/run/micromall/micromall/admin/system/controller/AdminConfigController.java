@@ -6,8 +6,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.db.base.Constant;
-import run.micromall.micromall.service.response.ResponseUtil;
 import run.micromall.micromall.service.system.service.MicroMallConfigService;
+import run.micromall.micromall.service.utils.ResponseUtil;
 
 import java.util.Map;
 
