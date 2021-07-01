@@ -30,7 +30,7 @@ git clone https://github.com/micromall-team/micromall.git
 
 ### 3.运行
 
-由于项目采用 [Flyway](https://flywaydb.org/) 来对数据库进行版本管理，导入IDE以后运行micromall-all下的Application.Java文件；
+项目采用 [Flyway](https://flywaydb.org/) 来对数据库进行版本管理，导入IDE以后,修改yml配置文件中的数据库配置运行micromall-all下的Application.Java文件；
 
 当然你也可以
 
@@ -41,10 +41,10 @@ mvn clean package
 java -Dfile.encoding=UTF-8 -jar micromall-all/target/micromall-all.jar
 ```
 
-此时，浏览器打开，输入网址`http://localhost:7878/admin`可以看到`hello admin`
+此时，浏览器打开，输入网址`http://localhost:7879/admin`可以看到`hello admin`
 ## 接口文档
 micromall没有采用swagger来生成文档，而是使用[smart-doc](https://gitee.com/smart-doc-team/smart-doc)来生成文档,
-访问`http://localhost:7878/static/doc/index.html` 可以查看API接口文档
+访问`http://localhost:7879/static/doc/index.html` 可以查看API接口文档
 
 
 ## 后台功能
@@ -57,11 +57,11 @@ micromall没有采用swagger来生成文档，而是使用[smart-doc](https://gi
   - [ ] 搜索历史
   - [ ] 意见反馈
 - [ ] 商场管理
-  - [ ] 品牌管理
-  - [ ] 分类管理
+  - [x] 品牌管理
+  - [x] 分类管理
   - [ ] 订单管理
   - [ ] 售后订单
-  - [ ] 通用问题
+  - [x] 通用问题
 - [ ] 商品管理
   - [ ] 商品列表
   - [ ] 商品评论
@@ -70,11 +70,11 @@ micromall没有采用swagger来生成文档，而是使用[smart-doc](https://gi
   - [ ] 优惠券管理
   - [ ] 轮播图管理
 - [ ] 系统管理
-  - [ ] 角色管理
+  - [x] 角色管理
   - [ ] 操作日志
-  - [ ] 对象存储
-  - [ ] 管理员
-- [ ] 配置管理
+  - [x] 对象存储
+  - [x] 管理员
+- [x] 配置管理
 - [ ] 统计报表
 
 ## 移动端功能
