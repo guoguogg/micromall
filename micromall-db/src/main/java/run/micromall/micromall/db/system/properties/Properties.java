@@ -7,7 +7,7 @@ import org.springframework.util.ObjectUtils;
  * <p>
  * 代码参考halo项目
  *
- * @link https://github.com/halo-dev/halo/blob/master/src/main/java/run/halo/app/model/properties/PropertyEnum.java
+ * @linkplain https://github.com/halo-dev/halo/blob/master/src/main/java/run/halo/app/model/properties/PropertyEnum.java
  */
 public interface Properties extends Value<String> {
     /**
