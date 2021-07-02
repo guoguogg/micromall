@@ -4,8 +4,10 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * 配置项接口
+ * <p>
+ * 代码参考halo项目
  *
- * @author songhaozhi
+ * @link https://github.com/halo-dev/halo/blob/master/src/main/java/run/halo/app/model/properties/PropertyEnum.java
  */
 public interface Properties extends Value<String> {
     /**

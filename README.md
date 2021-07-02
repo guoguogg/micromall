@@ -103,7 +103,11 @@ micromall没有采用swagger来生成文档，而是使用[smart-doc](https://gi
 
 1. [litemall](https://github.com/linlinjava/litemall)
 
-   项目介绍 :Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端 + Vue用户移动端 
+   项目介绍 :Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端 + Vue用户移动端的商城项目 
+
+2. [halo](https://github.com/halo-dev/halo)
+
+   项目介绍 :Halo 是一款现代化的个人独立博客系统，给习惯写博客的同学多一个选择。
 
 ## 问题
 

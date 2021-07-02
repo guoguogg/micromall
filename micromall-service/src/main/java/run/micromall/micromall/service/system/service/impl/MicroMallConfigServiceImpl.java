@@ -40,8 +40,11 @@ import java.util.Optional;
 
 /**
  * 系统配置service
+ * <p>
+ * 代码参考halo项目
  *
  * @author songhaozhi
+ * @link https://github.com/halo-dev/halo/blob/master/src/main/java/run/halo/app/service/impl/OptionServiceImpl.java
  * @since 2021/1/12
  */
 @Service
@@ -49,6 +52,7 @@ import java.util.Optional;
 public class MicroMallConfigServiceImpl implements MicroMallConfigService {
 
     private final MicroMallConfigMapper configMapper;
+
     @Override
     public void save(Map<String, String> map) {
         if (!map.isEmpty()) {
@@ -60,7 +64,7 @@ public class MicroMallConfigServiceImpl implements MicroMallConfigService {
     public void saveOption(String key, String value) {
         if (StrUtil.isNotEmpty(key)) {
             List<MicroMallConfig> list = configMapper.selectList(new LambdaQueryWrapper<MicroMallConfig>()
-                    .eq(MicroMallConfig::getKeyName,key));
+                    .eq(MicroMallConfig::getKeyName, key));
             if (list.isEmpty()) {
                 MicroMallConfig config = new MicroMallConfig();
                 config.setKeyName(key);
@@ -75,6 +79,7 @@ public class MicroMallConfigServiceImpl implements MicroMallConfigService {
             }
         }
     }
+
     @Override
     public int addConfig(String key, String value) {
         MicroMallConfig config = new MicroMallConfig();
