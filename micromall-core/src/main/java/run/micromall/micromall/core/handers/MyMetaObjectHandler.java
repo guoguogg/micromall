@@ -40,11 +40,12 @@ import java.time.LocalDateTime;
 public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.fillStrategy(metaObject, "addTime", LocalDateTime.now());
+        this.strictInsertFill(metaObject, "addTime", LocalDateTime::now, LocalDateTime.class);
+        this.strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.fillStrategy(metaObject, "updateTime", LocalDateTime.now());
+        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
     }
 }
