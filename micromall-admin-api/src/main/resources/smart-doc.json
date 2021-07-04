@@ -5,7 +5,7 @@
   "dataDictionaries": [],
   "md5EncryptedHtmlName": true,
   "outPath": "src/main/resources/static/doc",
-  "packageFilters": "run.micromall.micromall.admin.controller",
+  "packageFilters": "run.micromall.micromall.admin.shop.controller,run.micromall.micromall.admin.system.controller",
   "projectName": "micromall-API",
   "requestHeaders": [
     {

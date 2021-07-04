@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import run.micromall.micromall.admin.system.model.request.UpdatePermissionsRequest;
+import run.micromall.micromall.service.system.model.request.UpdatePermissionsRequest;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.core.shiro.PermVo;
 import run.micromall.micromall.core.shiro.Permission;
