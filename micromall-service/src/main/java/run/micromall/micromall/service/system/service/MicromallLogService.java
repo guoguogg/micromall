@@ -86,10 +86,9 @@ public class MicromallLogService {
      *
      * @author songhaozhi
      */
-    public PageInfo<MicromallLog> list(Integer page, Integer limit, String sort, String order) {
+    public PageInfo<MicromallLog> list(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         QueryWrapper<MicromallLog> wrapper = Wrappers.query();
-        wrapper.orderBy(StrUtil.isNotBlank(sort) && StrUtil.isNotBlank(order), !"desc".equals(order), sort);
         wrapper.eq("deleted", false);
         return new PageInfo<>(micromallLogMapper.list(wrapper));
     }
