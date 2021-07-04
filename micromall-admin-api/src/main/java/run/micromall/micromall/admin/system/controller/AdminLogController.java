@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
-import run.micromall.micromall.db.validation.Order;
-import run.micromall.micromall.db.validation.Sort;
 import run.micromall.micromall.service.system.service.MicromallLogService;
 import run.micromall.micromall.service.utils.ResponseUtil;
 
@@ -20,7 +18,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
  */
 @Slf4j
 @RestController
-@RequestMapping("/micromallLog")
+@RequestMapping("/admin/log")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Validated
 public class AdminLogController {
