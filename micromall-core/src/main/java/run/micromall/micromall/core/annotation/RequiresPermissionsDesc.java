@@ -7,8 +7,6 @@ import java.lang.annotation.Target;
 
 /**
  * 权限菜单列表
- *
- * @author songhaozhi
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

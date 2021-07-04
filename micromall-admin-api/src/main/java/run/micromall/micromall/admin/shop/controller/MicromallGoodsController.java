@@ -6,6 +6,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import run.micromall.micromall.core.annotation.Log;
 import run.micromall.micromall.service.shop.model.request.CreateGoodsRequest;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.db.shop.model.entity.MicromallGoods;
@@ -55,11 +56,10 @@ public class MicromallGoodsController {
     @PostMapping("/add")
     @RequiresPermissions("micromall:goods:add")
     @RequiresPermissionsDesc(menu = {"商品管理", "商品列表"}, button = "添加商品")
+    @Log(name = "商品管理-添加商品")
     public ResponseUtil createGoods(@Validated @RequestBody CreateGoodsRequest goods) {
         return ResponseUtil.ok(goodsService.createGoods(goods));
     }
-
-
 
     /**
      * 通过ID修改商品信息表
