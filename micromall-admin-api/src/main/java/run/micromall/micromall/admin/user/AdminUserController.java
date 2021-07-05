@@ -24,7 +24,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
 @RequestMapping("/admin/user")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Validated
-public class MicromallUserController {
+public class AdminUserController {
 
     private final MicromallUserService userService;
 

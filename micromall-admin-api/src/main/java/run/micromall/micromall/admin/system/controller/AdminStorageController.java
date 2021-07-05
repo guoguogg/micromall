@@ -45,7 +45,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
 @RequestMapping("/admin/storage")
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MicroMallStorageController {
+public class AdminStorageController {
 
     private final MicroMallStorageService storageService;
     /**

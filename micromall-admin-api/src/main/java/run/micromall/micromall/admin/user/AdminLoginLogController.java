@@ -23,7 +23,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
 @RequestMapping("/admin/loginLog")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Validated
-public class MicromallLoginLogController {
+public class AdminLoginLogController {
 
     private final MicromallLoginLogService loginLogService;
 

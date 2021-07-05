@@ -24,7 +24,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
 @RequestMapping("/admin/category")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Validated
-public class MicromallCategoryController {
+public class AdminCategoryController {
 
     private final MicromallCategoryService categoryService;
 

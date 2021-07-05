@@ -24,7 +24,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
 @RequestMapping("/admin/brand")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Validated
-public class MicromallBrandController {
+public class AdminBrandController {
 
     private final MicromallBrandService brandService;
 

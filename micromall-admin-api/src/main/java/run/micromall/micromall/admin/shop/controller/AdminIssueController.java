@@ -24,7 +24,7 @@ import run.micromall.micromall.service.utils.ResponseUtil;
 @RequestMapping("/admin/issue")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Validated
-public class MicromallIssueController {
+public class AdminIssueController {
 
     private final MicromallIssueService issueService;
 
