@@ -1,0 +1,16 @@
+{
+  "adoc": false,
+  "allInOne": true,
+  "coverOld": true,
+  "createDebugPage": true,
+  "dataDictionaries": [],
+  "md5EncryptedHtmlName": true,
+  "outPath": "src/main/resources/static/doc",
+  "packageFilters": "run.micromall.micromall.wx.controller",
+  "projectName": "MicroMall-API",
+  "revisionLogs": [],
+  "serverUrl": "http://ip:7878",
+  "showAuthor": true,
+  "skipTransientField": true,
+  "strict": true
+}
