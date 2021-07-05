@@ -1,12 +1,12 @@
 micromall:
-  domain: "http://localhost:7878/" #上传文件使用
+  domain: "http://localhost:8080/" #上传文件使用，末尾有/
 
 server:
-  port: 7878
+  port: 8080
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/micromall?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/micromall?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -23,7 +23,7 @@ spring:
     cache: false
 mybatis-plus:
   typeAliasesPackage: com.micromall.micromall.*.model.entity
-  mapperLocations: classpath:mapper/*.xml
+  mapperLocations: classpath:mapper/*/*.xml
   #驼峰下划线转换
   configuration:
     map-underscore-to-camel-case: true

@@ -1,5 +1,5 @@
 micromall:
-  domain: "http://localhost:7878/" #上传文件使用，末尾有/
+  domain: "http://localhost:7879/" #上传文件使用，末尾有/
 
 server:
   port: 7879
