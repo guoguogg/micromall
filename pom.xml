@@ -45,6 +45,7 @@
         <commons-lang3.version>3.11</commons-lang3.version>
         <flyway.version>7.10.0</flyway.version>
         <jwt.version>3.4.1</jwt.version>
+        <aliyun-java-sdk-core.version>4.1.0</aliyun-java-sdk-core.version>
     </properties>
 
     <licenses>
@@ -93,6 +94,11 @@
                 <groupId>run.micromall</groupId>
                 <artifactId>micromall-all</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.flywaydb</groupId>

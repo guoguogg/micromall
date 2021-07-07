@@ -18,10 +18,10 @@ public class SmsFactory {
     private Map<String, SmsSender> smsSenderMap = new ConcurrentHashMap<>();
 
     public SmsSender getSmsSender(String component) {
-        SmsSender upload = smsSenderMap.get(component);
-        if (upload == null) {
+        SmsSender smsSender = smsSenderMap.get(component);
+        if (smsSender == null) {
             throw new NullPointerException("no strategy defined");
         }
-        return upload;
+        return smsSender;
     }
 }

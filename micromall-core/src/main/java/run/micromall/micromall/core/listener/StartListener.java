@@ -33,6 +33,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import run.micromall.micromall.db.base.Constant;
 import run.micromall.micromall.db.system.properties.MallProperties;
+import run.micromall.micromall.db.system.properties.SmsProperties;
 import run.micromall.micromall.db.system.properties.StorageProperties;
 import run.micromall.micromall.service.system.service.MicroMallConfigService;
 
@@ -77,6 +78,18 @@ public class StartListener implements ApplicationListener<ContextRefreshedEvent>
                 StorageProperties.MICROMALL_FILE_THUMB_WIDTH.getDefaultValue());
         DEFAULT_CONFIGS.put(StorageProperties.MICROMALL_FILE_THUMB_HEIGHT.getValue(),
                 StorageProperties.MICROMALL_FILE_THUMB_HEIGHT.getDefaultValue());
+
+        //短信服务部分
+        DEFAULT_CONFIGS.put(SmsProperties.MICROMALL_ACTIVE.getValue(),
+                SmsProperties.MICROMALL_ACTIVE.getDefaultValue());
+        DEFAULT_CONFIGS.put(SmsProperties.MICROMALL_SMS_TEMPLATE.getValue(),
+                SmsProperties.MICROMALL_SMS_TEMPLATE.getDefaultValue());
+        DEFAULT_CONFIGS.put(SmsProperties.MICROMALL_ALI_SMS_ACCESS_KEY_ID.getValue(),
+                SmsProperties.MICROMALL_ALI_SMS_ACCESS_KEY_ID.getDefaultValue());
+        DEFAULT_CONFIGS.put(SmsProperties.MICROMALL_ALI_SMS_ACCESS_SECRET.getValue(),
+                SmsProperties.MICROMALL_ALI_SMS_ACCESS_SECRET.getDefaultValue());
+        DEFAULT_CONFIGS.put(SmsProperties.MICROMALL_ALI_SMS_SIGN_NAME.getValue(),
+                SmsProperties.MICROMALL_ALI_SMS_SIGN_NAME.getDefaultValue());
     }
 
     @Override
