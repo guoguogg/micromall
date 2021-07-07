@@ -1,29 +1,27 @@
-package run.micromall.micromall.service.system.storage;
+package run.micromall.micromall.service.system.sms;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 文件工厂
+ * 短信服务工厂
  *
- * @author songhaozhi
- * @since 2021/01/16
+ * @author Administrator
+ * @since 2021/7/7
  */
 @Service
-public class UploadFactory {
+public class SmsFactory {
 
     @Autowired
-    private Map<String, StorageUpload> uploadMap = new ConcurrentHashMap<>();
+    private Map<String, SmsSender> smsSenderMap = new ConcurrentHashMap<>();
 
-    public StorageUpload getUpload(String component) {
-        StorageUpload upload = uploadMap.get(component);
+    public SmsSender getSmsSender(String component) {
+        SmsSender upload = smsSenderMap.get(component);
         if (upload == null) {
             throw new NullPointerException("no strategy defined");
         }
         return upload;
     }
-
 }
