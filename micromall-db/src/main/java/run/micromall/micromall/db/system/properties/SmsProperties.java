@@ -2,7 +2,8 @@ package run.micromall.micromall.db.system.properties;
 
 /**
  * 短信模板配置
- *
+ *<br/><br/>
+ * 此处默认值都写的false, 如果是false表示用户没有设置正确的值，直接结束程序
  * @author Administrator
  * @since 2021/7/7
  */
@@ -13,7 +14,7 @@ public enum SmsProperties implements Properties {
     MICROMALL_ACTIVE("micromall_active", String.class, "false"),
     /**
      * json形式字符串
-     *
+     * <p>
      * List<Map<String, String>>
      */
     MICROMALL_SMS_TEMPLATE("micromall_sms_template", String.class, "[{\"templateId\":\"156349\",\"name\":\"paySucceed\"},{\"templateId\":\"156433\",\"name\":\"captcha\"},{\"templateId\":\"158002\",\"name\":\"ship\"},{\"templateId\":\"159447\",\"name\":\"refund\"}]"),
