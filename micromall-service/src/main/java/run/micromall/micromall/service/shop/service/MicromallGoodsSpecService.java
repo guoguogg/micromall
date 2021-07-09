@@ -1,4 +1,4 @@
-package run.micromall.micromall.service.system.service;
+package run.micromall.micromall.service.shop.service;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

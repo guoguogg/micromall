@@ -10,7 +10,7 @@ import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.db.shop.model.entity.MicromallGoodsSku;
 import run.micromall.micromall.db.validation.Order;
 import run.micromall.micromall.db.validation.Sort;
-import run.micromall.micromall.service.system.service.MicromallGoodsSkuService;
+import run.micromall.micromall.service.shop.service.MicromallGoodsSkuService;
 import run.micromall.micromall.service.utils.ResponseUtil;
 
 /**
