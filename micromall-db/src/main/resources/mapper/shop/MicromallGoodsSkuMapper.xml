@@ -7,7 +7,7 @@
         sku_id, specification, goods_id, price, number, sku_name, goods_name, pic_url, is_on_sale, weight, add_time, update_time, deleted
     </sql>
 
-    <select id="list" resultType="com.module.system.entity.MicromallGoodsSku">
+    <select id="list" resultType="run.micromall.micromall.db.shop.model.entity.MicromallGoodsSku">
         select
         <include refid="Base_Column_List"/>
         from micromall_goods_sku
