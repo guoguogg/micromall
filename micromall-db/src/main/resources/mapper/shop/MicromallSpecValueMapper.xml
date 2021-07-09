@@ -4,14 +4,13 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        spec_value_id, spec_value, add_time, update_time, deleted
+        spec_value_id, spec_value, spec_id, add_time, update_time, deleted
     </sql>
 
-    <select id="list" resultType="run.micromall.micromall.db.shop.model.entity.MicromallSpecValue">
+    <select id="list" resultType="com.module.system.entity.MicromallSpecValue">
         select
         <include refid="Base_Column_List"/>
         from micromall_spec_value
         ${ew.customSqlSegment}
     </select>
-
 </mapper>
