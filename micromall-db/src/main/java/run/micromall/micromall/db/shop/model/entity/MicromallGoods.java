@@ -79,18 +79,6 @@ public class MicromallGoods extends BaseEntity {
     private Boolean isOnSale;
 
     /**
-     * 是否新品首发，如果设置则可以在新品首发页面展示
-     */
-    @TableField("is_new")
-    private Boolean isNew;
-
-    /**
-     * 是否人气推荐，如果设置则可以在人气推荐页面展示
-     */
-    @TableField("is_hot")
-    private Boolean isHot;
-
-    /**
      * 商品单位，例如件、盒
      */
     @TableField("unit")

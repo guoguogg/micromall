@@ -74,7 +74,7 @@ public class CreateGoodsRequest {
         /**
          * 商品编号
          */
-        @NotBlank(message = "商品名称不能为空")
+        @NotBlank(message = "商品编号不能为空")
         private String goodsSn;
 
         /**
@@ -86,32 +86,32 @@ public class CreateGoodsRequest {
         /**
          * 商品简介
          */
-        @NotBlank(message = "商品名称不能为空")
+        @NotBlank(message = "商品简介不能为空")
         private String brief;
 
         /**
          * 商品详细介绍，是富文本格式
          */
-        @NotBlank(message = "商品名称不能为空")
+        @NotBlank(message = "商品详细介绍不能为空")
         private String detail;
 
         /**
          * 商品页面商品图片
          */
-        @NotBlank(message = "商品名称不能为空")
+        @NotBlank(message = "商品图片不能为空")
         private String picUrl;
 
         /**
          * 商品所属类目ID
          */
-        @NotNull(message = "商品名称不能为空")
+        @NotNull(message = "类目ID不能为空")
         @Min(value = 1, message = "categoryId必须为正整数")
         private Long categoryId;
 
         /**
          * 供应商id
          */
-        @NotNull(message = "商品名称不能为空")
+        @NotNull(message = "brandId不能为空")
         @Min(value = 1, message = "brandId必须为正整数")
         private Long brandId;
 

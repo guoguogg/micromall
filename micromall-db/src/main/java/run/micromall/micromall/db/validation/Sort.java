@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface Sort {
     String message() default "排序字段不支持";
 
-    String[] accepts() default {"add_time","sort"};
+    String[] accepts() default {"add_time","sort_order"};
 
     Class<?>[] groups() default {};
 

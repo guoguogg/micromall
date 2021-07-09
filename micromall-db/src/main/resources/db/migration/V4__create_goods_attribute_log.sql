@@ -14,8 +14,6 @@ CREATE TABLE `micromall_goods` (
   `category_id` bigint(20) DEFAULT '0' COMMENT '商品所属类目ID',
   `brand_id` bigint(20) DEFAULT '0' COMMENT '供应商id',
   `is_on_sale` tinyint(1) DEFAULT '1' COMMENT '是否上架',
-  `is_new` tinyint(1) DEFAULT '0' COMMENT '是否新品首发，如果设置则可以在新品首发页面展示',
-  `is_hot` tinyint(1) DEFAULT '0' COMMENT '是否人气推荐，如果设置则可以在人气推荐页面展示',
   `unit` varchar(31) DEFAULT '’件‘' COMMENT '商品单位，例如件、盒',
   `counter_price` decimal(10,2) DEFAULT '0.00' COMMENT '专柜价格',
   `retail_price` decimal(10,2) DEFAULT '100000.00' COMMENT '零售价格',
