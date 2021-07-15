@@ -25,31 +25,34 @@ package run.micromall.micromall.service.shop.model.request;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 添加规格请求参数
+ * 修改规格请求参数
  *
  * @author songhaozhi
  * @since 2021/7/15
  */
 @Data
-public class CreateSpecRequest implements Serializable {
+public class UpdateSpecRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * 规格id
+     */
+    @NotNull(message = "规格ID不能为空")
+    private Long specId;
     /**
      * 规格名称
      */
     @NotBlank(message = "规格名称不能为空")
     private String specName;
-
     /**
      * 规格值列表
      */
-    @Size(min = 1, message = "规格值不能为空")
+    @Size(min = 1, message = "规格值名称不能为空")
     private List<String> specValueList;
-
 }

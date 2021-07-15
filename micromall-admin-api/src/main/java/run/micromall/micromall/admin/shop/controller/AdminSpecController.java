@@ -11,6 +11,7 @@ import run.micromall.micromall.db.shop.model.entity.MicromallSpec;
 import run.micromall.micromall.db.validation.Order;
 import run.micromall.micromall.db.validation.Sort;
 import run.micromall.micromall.service.shop.model.request.CreateSpecRequest;
+import run.micromall.micromall.service.shop.model.request.UpdateSpecRequest;
 import run.micromall.micromall.service.shop.service.MicromallSpecService;
 import run.micromall.micromall.service.utils.ResponseUtil;
 
@@ -64,15 +65,15 @@ public class AdminSpecController {
     /**
      * 通过ID修改规格表
      *
-     * @param micromallSpec
+     * @param updateSpecRequest
      * @author songhaozhi
      * @date 2021-07-08
      */
     @PutMapping("/update")
     @RequiresPermissions("micromall:spec:update")
     @RequiresPermissionsDesc(menu = {"商品管理", "规格管理"}, button = "修改")
-    public ResponseUtil update(@RequestBody MicromallSpec micromallSpec) {
-        return ResponseUtil.result(specService.updateById(micromallSpec) > 0);
+    public ResponseUtil updateSpec(@Valid @RequestBody UpdateSpecRequest updateSpecRequest) {
+        return specService.updateSpec(updateSpecRequest);
     }
 
     /**
