@@ -87,7 +87,7 @@ public class AdminSpecController {
     @RequiresPermissions("micromall:spec:delete")
     @RequiresPermissionsDesc(menu = {"商品管理", "规格管理"}, button = "删除")
     public ResponseUtil deleteMicromallSpec(@PathVariable("id") Long id) {
-        return ResponseUtil.result(specService.deleteById(id) > 0);
+        return specService.deleteById(id);
     }
 
     /**

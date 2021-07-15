@@ -78,6 +78,7 @@ public class MicromallSpecService {
      * @param updateSpecRequest
      * @author songhaozhi
      */
+    @Transactional(rollbackFor = Throwable.class)
     public ResponseUtil updateSpec(UpdateSpecRequest updateSpecRequest) {
         MicromallSpec micromallSpec = specMapper.selectOne(new LambdaQueryWrapper<MicromallSpec>()
                 .eq(MicromallSpec::getSpecName, updateSpecRequest.getSpecName()));
@@ -112,8 +113,11 @@ public class MicromallSpecService {
      * @param id
      * @author songhaozhi
      */
-    public int deleteById(Long id) {
-        return specMapper.deleteById(id);
+    @Transactional(rollbackFor = Throwable.class)
+    public ResponseUtil deleteById(Long id) {
+        specMapper.deleteById(id);
+        specValueManager.deleteBySpecId(id);
+        return ResponseUtil.ok();
     }
 
     /**
