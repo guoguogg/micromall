@@ -3,6 +3,14 @@
 <mapper namespace="run.micromall.micromall.db.shop.mapper.MicromallSpecValueMapper">
 
     <!-- 通用查询结果列 -->
+    <resultMap id="BaseResultMap" type="run.micromall.micromall.db.shop.model.entity.MicromallSpecValue">
+        <result column="spec_value_id" property="specValueId"/>
+        <result column="spec_id" property="specId"/>
+        <result column="spec_value" property="specValue"/>
+        <result column="add_time" property="addTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
     <sql id="Base_Column_List">
         spec_value_id, spec_value, spec_id, add_time, update_time, deleted
     </sql>
@@ -13,4 +21,21 @@
         from micromall_spec_value
         ${ew.customSqlSegment}
     </select>
+
+    <insert id="insertList">
+        INSERT INTO micromall_spec_value(
+        spec_id,
+        spec_value,
+        add_time,
+        update_time
+        )VALUES
+        <foreach collection="list" item="element" index="index" separator=",">
+            (
+            #{element.specId},
+            #{element.specValue},
+            #{element.addTime},
+            #{element.updateTime}
+            )
+        </foreach>
+    </insert>
 </mapper>

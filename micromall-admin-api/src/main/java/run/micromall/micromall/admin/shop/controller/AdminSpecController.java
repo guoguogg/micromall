@@ -10,8 +10,11 @@ import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.db.shop.model.entity.MicromallSpec;
 import run.micromall.micromall.db.validation.Order;
 import run.micromall.micromall.db.validation.Sort;
+import run.micromall.micromall.service.shop.model.request.CreateSpecRequest;
 import run.micromall.micromall.service.shop.service.MicromallSpecService;
 import run.micromall.micromall.service.utils.ResponseUtil;
+
+import javax.validation.Valid;
 
 /**
  * 规格表
@@ -47,15 +50,15 @@ public class AdminSpecController {
     /**
      * 添加规格表
      *
-     * @param micromallSpec
+     * @param specRequest
      * @author songhaozhi
      * @date 2021-07-08
      */
     @PostMapping("/add")
     @RequiresPermissions("micromall:spec:add")
-    @RequiresPermissionsDesc(menu = {"商品管理", "规格管理"}, button = "添加")
-    public ResponseUtil addMicromallSpec(@RequestBody MicromallSpec micromallSpec) {
-        return ResponseUtil.result(specService.insert(micromallSpec) > 0);
+    @RequiresPermissionsDesc(menu = {"商品管理", "规格管理"}, button = "添加规格")
+    public ResponseUtil createSpec(@Valid @RequestBody CreateSpecRequest specRequest) {
+        return specService.createSpec(specRequest);
     }
 
     /**

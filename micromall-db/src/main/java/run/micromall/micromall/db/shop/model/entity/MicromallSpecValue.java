@@ -33,7 +33,7 @@ public class MicromallSpecValue extends BaseEntity {
      * 规格id
      */
     @TableField("spec_id")
-    private String specId;
+    private Long specId;
 
     /**
      * 规格值

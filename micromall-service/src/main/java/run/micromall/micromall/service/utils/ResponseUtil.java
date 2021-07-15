@@ -56,6 +56,7 @@ public class ResponseUtil<T> implements Serializable {
         DATEBASE_EXECUTION_EXCEPTION("5004", "数据库执行语句出现异常"),
         REQUESTMETHODNOTSUPPORTED("5005", "不支持的请求方式"),
 
+        EXISTED("10001", "%s已存在"),
         ;
         public String code;
         public String msg;

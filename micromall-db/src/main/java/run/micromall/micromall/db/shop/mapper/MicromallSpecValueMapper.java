@@ -20,4 +20,8 @@ public interface MicromallSpecValueMapper extends BaseMapper<MicromallSpecValue>
 
     List<MicromallSpecValue> list(@Param(Constants.WRAPPER) Wrapper wrapper);
 
+    int insertList(@Param("list")List<MicromallSpecValue> list);
+
+
+
 }
