@@ -9,7 +9,7 @@
   "packageFilters": "run.micromall.micromall.admin.shop.controller,run.micromall.micromall.admin.system.controller,run.micromall.micromall.wx.controller",
   "projectName": "MicroMall-API",
   "revisionLogs": [],
-  "serverUrl": "http://ip:7878",
+  "serverUrl": "http://localhost:7879",
   "showAuthor": true,
   "skipTransientField": true,
   "strict": true

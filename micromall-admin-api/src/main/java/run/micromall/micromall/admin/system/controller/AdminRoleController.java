@@ -12,7 +12,7 @@ import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.core.shiro.PermVo;
 import run.micromall.micromall.core.shiro.Permission;
 import run.micromall.micromall.core.shiro.PermissionUtil;
-import run.micromall.micromall.db.base.IdParam;
+import run.micromall.micromall.db.base.IdRequest;
 import run.micromall.micromall.db.system.model.entity.MicroMallAdmin;
 import run.micromall.micromall.db.system.model.entity.MicroMallPermission;
 import run.micromall.micromall.db.system.model.entity.MicroMallRole;
@@ -154,7 +154,7 @@ public class AdminRoleController {
     @RequiresPermissions("admin:role:read")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "角色详情")
     @GetMapping("/read")
-    public ResponseUtil<MicroMallRole> read(@Validated IdParam param) {
+    public ResponseUtil<MicroMallRole> read(@Validated IdRequest param) {
         MicroMallRole role = roleService.findById(param.getId());
         return ResponseUtil.ok(role);
     }
@@ -167,7 +167,7 @@ public class AdminRoleController {
     @RequiresPermissions("admin:role:permission:get")
     @RequiresPermissionsDesc(menu = {"系统管理", "角色管理"}, button = "权限详情")
     @GetMapping("/permissions")
-    public ResponseUtil getPermissions(@Validated IdParam param) {
+    public ResponseUtil getPermissions(@Validated IdRequest param) {
         List<PermVo> systemPermissions = getSystemPermissions();
         Set<String> assignedPermissions = getAssignedPermissions(param.getId());
         Map<String, Object> data = new HashMap<>();

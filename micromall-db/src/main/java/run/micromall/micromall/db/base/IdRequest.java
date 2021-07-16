@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @Getter
 @Setter
-public class IdParam {
+public class IdRequest {
     /**
      * 操作的Id
      * 比如操作标签的删除就是标签ID，角色的就是角色ID

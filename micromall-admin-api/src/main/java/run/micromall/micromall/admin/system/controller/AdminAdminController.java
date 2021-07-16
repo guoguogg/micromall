@@ -6,7 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
 import run.micromall.micromall.core.shiro.ShiroUtil;
-import run.micromall.micromall.db.base.IdParam;
+import run.micromall.micromall.db.base.IdRequest;
 import run.micromall.micromall.db.system.model.entity.MicroMallAdmin;
 import run.micromall.micromall.db.validation.Order;
 import run.micromall.micromall.db.validation.Sort;
@@ -120,7 +120,7 @@ public class AdminAdminController {
     @RequiresPermissions("admin:admin:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "管理员管理"}, button = "删除")
     @PostMapping("/delete")
-    public Object delete(@RequestBody IdParam param) {
+    public Object delete(@RequestBody IdRequest param) {
         Long anotherAdminId = param.getId();
         if (anotherAdminId == null) {
             return ResponseUtil.paramError();

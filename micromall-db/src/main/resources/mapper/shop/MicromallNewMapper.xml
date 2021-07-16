@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.micromall.micromall.db.shop.mapper.MicromallNewMapper">
+
+    <sql id="Base_Column_List">
+	new_id,
+	goods_id,
+	add_time,
+	update_time,
+	deleted
+    </sql>
+    <resultMap id="BaseResultMap" type="run.micromall.micromall.db.shop.model.entity.MicromallNew">
+        <result column="new_id" property="newId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="add_time" property="addTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+    <select id="list" resultType="run.micromall.micromall.db.shop.model.entity.MicromallGoods">
+        SELECT
+        g.`name`,
+        g.goods_sn,
+        g.pic_url,
+        g.is_on_sale
+        FROM
+        micromall_goods g
+        LEFT JOIN micromall_new n ON g.goods_id = n.goods_id
+        ${ew.customSqlSegment}
+    </select>
+
+    <insert id="insertList">
+        INSERT INTO micromall_new(
+        goods_id
+        )VALUES
+        <foreach collection="list" item="element" index="index" separator=",">
+            (
+            #{element.goodsId}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

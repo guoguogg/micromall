@@ -22,7 +22,6 @@
  */
 package run.micromall.micromall.admin.system.controller;
 
-import cn.hutool.core.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import run.micromall.micromall.core.annotation.RequiresPermissionsDesc;
-import run.micromall.micromall.db.base.IdParam;
+import run.micromall.micromall.db.base.IdRequest;
 import run.micromall.micromall.db.system.model.entity.MicroMallStorage;
 import run.micromall.micromall.service.system.service.MicroMallStorageService;
 import run.micromall.micromall.service.system.storage.UploadResult;
@@ -74,7 +73,7 @@ public class AdminStorageController {
     @DeleteMapping("/delete")
     @RequiresPermissions("admin:storage:delete")
     @RequiresPermissionsDesc(menu = {"系统管理", "附件管理"}, button = "附件删除")
-    public ResponseUtil<MicroMallStorage> delete(@Validated IdParam param) {
+    public ResponseUtil<MicroMallStorage> delete(@Validated IdRequest param) {
         return ResponseUtil.ok(storageService.delete(param.getId()));
     }
     /**
