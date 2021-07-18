@@ -7,6 +7,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpMediaTypeException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -97,6 +98,19 @@ public class GlobalExceptionHandler {
     public ResponseUtil httpMediaTypeException(HttpMediaTypeException exception) {
         log.error("httpMediaTypeException:", exception);
         return ResponseUtil.fail(ResponseCode.PARAMETER_EXCEPTION, ResponseCode.HTTP_MEDIA_TYPE_EXCEPTION);
+    }
+
+    /**
+     * 请求方式异常
+     *
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseUtil httpHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        log.error("httpHttpRequestMethodNotSupportedException:", exception);
+        return ResponseUtil.fail(ResponseUtil.ResponseCode.REQUESTMETHODNOTSUPPORTED, ResponseUtil.ResponseCode.REQUESTMETHODNOTSUPPORTED);
     }
 
     /**
