@@ -71,6 +71,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(DataAccessException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseUtil handleDataAccessException(DataAccessException e) {
         log.error("Catch an DataAccessException:", e);
         return ResponseUtil.fail(ResponseCode.DATEBASE_EXECUTION_EXCEPTION);
@@ -82,7 +83,7 @@ public class GlobalExceptionHandler {
      * @param exception
      */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseUtil httpMessageNotReadableException(HttpMessageNotReadableException exception) {
         log.error("httpMessageNotReadableException:", exception);
         return ResponseUtil.fail(ResponseCode.PARAMETER_EXCEPTION, ResponseCode.PARAMETER_PARSE_EXCEPTION);
@@ -94,7 +95,7 @@ public class GlobalExceptionHandler {
      * @param exception
      */
     @ExceptionHandler(value = HttpMediaTypeException.class)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseUtil httpMediaTypeException(HttpMediaTypeException exception) {
         log.error("httpMediaTypeException:", exception);
         return ResponseUtil.fail(ResponseCode.PARAMETER_EXCEPTION, ResponseCode.HTTP_MEDIA_TYPE_EXCEPTION);
@@ -107,7 +108,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ResponseUtil httpHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
         log.error("httpHttpRequestMethodNotSupportedException:", exception);
         return ResponseUtil.fail(ResponseUtil.ResponseCode.REQUESTMETHODNOTSUPPORTED, ResponseUtil.ResponseCode.REQUESTMETHODNOTSUPPORTED);
@@ -119,7 +120,7 @@ public class GlobalExceptionHandler {
      * @param exception
      */
     @ExceptionHandler(value = Exception.class)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseUtil exceptionHandler(Exception exception) {
         log.error("exception:", exception);
         return ResponseUtil.fail(ResponseCode.SYSTEM_EXCEPTION);

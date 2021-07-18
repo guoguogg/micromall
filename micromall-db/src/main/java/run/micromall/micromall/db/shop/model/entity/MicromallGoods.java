@@ -61,10 +61,10 @@ public class MicromallGoods extends BaseEntity {
     private String picUrl;
 
     /**
-     * 商品所属类目ID
+     * 商品所属类目ID, ","分隔
      */
     @TableField("category_id")
-    private Long categoryId;
+    private String categoryId;
 
     /**
      * 供应商id

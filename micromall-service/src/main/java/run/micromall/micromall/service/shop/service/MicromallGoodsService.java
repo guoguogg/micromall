@@ -1,5 +1,6 @@
 package run.micromall.micromall.service.shop.service;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -11,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import run.micromall.micromall.db.base.ListIdRequest;
+import run.micromall.micromall.db.shop.mapper.MicromallBrandMapper;
 import run.micromall.micromall.db.shop.mapper.MicromallGoodsAttributeMapper;
 import run.micromall.micromall.db.shop.mapper.MicromallGoodsMapper;
+import run.micromall.micromall.db.shop.model.entity.MicromallBrand;
 import run.micromall.micromall.db.shop.model.entity.MicromallGoods;
 import run.micromall.micromall.db.shop.model.entity.MicromallGoodsAttribute;
 import run.micromall.micromall.db.shop.model.entity.MicromallNew;
@@ -62,6 +65,7 @@ public class MicromallGoodsService {
      * @author songhaozhi
      */
     public ResponseUtil updateGoods(CreateGoodsRequest goods) {
+        check(goods.getGoods());
         MicromallGoods micromallGoods = new MicromallGoods();
         BeanConvertUtils.copyProperties(goods.getGoods(), micromallGoods);
         goodsMapper.updateById(micromallGoods);
@@ -109,10 +113,29 @@ public class MicromallGoodsService {
      */
     @Transactional(rollbackFor = Throwable.class)
     public Long createGoods(CreateGoodsRequest goods) {
+        check(goods.getGoods());
         MicromallGoods micromallGoods = new MicromallGoods();
         BeanConvertUtils.copyProperties(goods.getGoods(), micromallGoods);
         goodsMapper.insert(micromallGoods);
         return micromallGoods.getGoodsId();
+    }
+
+    /**
+     * 校验参数
+     *
+     * @param goods
+     */
+    private void check(CreateGoodsRequest.Goods goods) {
+        if (StrUtil.isNotBlank(goods.getCategoryId())) {
+            if (!goodsManager.checkCategoryId(goods.getCategoryId())) {
+                throw new RuntimeException("参数错误");
+            }
+        }
+        if (ObjectUtil.isNotNull(goods.getBrandId())) {
+            if (!goodsManager.checkBrandId(goods.getBrandId())) {
+                throw new RuntimeException("参数错误");
+            }
+        }
     }
 
     /**
@@ -146,6 +169,12 @@ public class MicromallGoodsService {
         return ResponseUtil.ok();
     }
 
+    /**
+     * 删除商品参数
+     *
+     * @param request
+     * @return
+     */
     public ResponseUtil deleteAttribute(ListIdRequest request) {
         goodsAttributeMapper.deleteBatchIds(request.getIds());
         return ResponseUtil.ok();

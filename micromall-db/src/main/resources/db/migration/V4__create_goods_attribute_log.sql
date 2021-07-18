@@ -11,7 +11,7 @@ CREATE TABLE `micromall_goods` (
   `brief` varchar(255) DEFAULT '' COMMENT '商品简介',
   `detail` text COMMENT '商品详细介绍，是富文本格式',
   `pic_url` varchar(1024) DEFAULT NULL COMMENT '商品页面商品图片',
-  `category_id` bigint(20) DEFAULT '0' COMMENT '商品所属类目ID',
+  `category_id` varchar(100) DEFAULT '0' COMMENT '商品所属类目ID, ","分隔',
   `brand_id` bigint(20) DEFAULT '0' COMMENT '供应商id',
   `is_on_sale` tinyint(1) DEFAULT '1' COMMENT '是否上架',
   `unit` varchar(31) DEFAULT '’件‘' COMMENT '商品单位，例如件、盒',

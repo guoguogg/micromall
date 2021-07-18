@@ -85,17 +85,13 @@ public class CreateGoodsRequest {
         private String picUrl;
 
         /**
-         * 商品所属类目ID
+         * 商品所属类目ID, ","分隔
          */
-        @NotNull(groups = {AddGroup.class, UpdateGroup.class}, message = "类目ID不能为空")
-        @Min(value = 1, message = "categoryId必须为正整数")
-        private Long categoryId;
+        private String categoryId;
 
         /**
          * 供应商id
          */
-        @NotNull(groups = {AddGroup.class, UpdateGroup.class}, message = "brandId不能为空")
-        @Min(value = 1, message = "brandId必须为正整数")
         private Long brandId;
 
         /**
