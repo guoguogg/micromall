@@ -10,13 +10,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import run.micromall.micromall.db.base.ListIdRequest;
 import run.micromall.micromall.db.shop.mapper.MicromallGoodsAttributeMapper;
 import run.micromall.micromall.db.shop.mapper.MicromallGoodsMapper;
 import run.micromall.micromall.db.shop.model.entity.MicromallGoods;
 import run.micromall.micromall.db.shop.model.entity.MicromallGoodsAttribute;
+import run.micromall.micromall.db.shop.model.entity.MicromallNew;
+import run.micromall.micromall.service.shop.manager.MicromallGoodsManager;
 import run.micromall.micromall.service.shop.model.request.CreateGoodsRequest;
+import run.micromall.micromall.service.shop.model.request.GoodsAttribute;
 import run.micromall.micromall.service.utils.BeanConvertUtils;
+import run.micromall.micromall.service.utils.ResponseUtil;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -36,6 +43,8 @@ public class MicromallGoodsService {
 
     private final MicromallGoodsMapper goodsMapper;
 
+    private final MicromallGoodsManager goodsManager;
+
     /**
      * 保存商品信息表
      *
@@ -49,11 +58,14 @@ public class MicromallGoodsService {
     /**
      * 通过ID修改商品信息表
      *
-     * @param micromallGoods
+     * @param goods
      * @author songhaozhi
      */
-    public int updateById(MicromallGoods micromallGoods) {
-        return goodsMapper.updateById(micromallGoods);
+    public ResponseUtil updateGoods(CreateGoodsRequest goods) {
+        MicromallGoods micromallGoods = new MicromallGoods();
+        BeanConvertUtils.copyProperties(goods.getGoods(), micromallGoods);
+        goodsMapper.updateById(micromallGoods);
+        return ResponseUtil.ok();
     }
 
     /**
@@ -99,15 +111,43 @@ public class MicromallGoodsService {
     public Long createGoods(CreateGoodsRequest goods) {
         MicromallGoods micromallGoods = new MicromallGoods();
         BeanConvertUtils.copyProperties(goods.getGoods(), micromallGoods);
-        List<MicromallGoodsAttribute> attributeList = BeanConvertUtils.convertListTo(goods.getAttributes()
-                , MicromallGoodsAttribute::new);
-
         goodsMapper.insert(micromallGoods);
-
-        //todo:规格
-
-        attributeList.forEach(attribute -> attribute.setGoodsId(micromallGoods.getGoodsId()));
-        goodsAttributeMapper.insertList(attributeList);
         return micromallGoods.getGoodsId();
+    }
+
+    /**
+     * 添加商品参数信息
+     *
+     * @param goodsAttribute
+     * @return
+     */
+    @Transactional(rollbackFor = Throwable.class)
+    public ResponseUtil addAttribute(GoodsAttribute goodsAttribute) {
+        List<MicromallGoodsAttribute> attributeList = BeanConvertUtils.convertListTo(goodsAttribute.getAttributes()
+                , MicromallGoodsAttribute::new);
+        goodsAttributeMapper.insertList(attributeList);
+        return ResponseUtil.ok();
+    }
+
+    /**
+     * 修改商品参数信息
+     *
+     * @param attribute
+     * @return
+     */
+    public ResponseUtil updateAttribute(GoodsAttribute.Attribute attribute) {
+        int countGoodsByGoodsId = goodsManager.selectCountGoodsByGoodsId(attribute.getGoodsId());
+        if (countGoodsByGoodsId == 0) {
+            return ResponseUtil.fail(ResponseUtil.ResponseCode.PARAMETER_EXCEPTION);
+        }
+        MicromallGoodsAttribute goodsAttribute = new MicromallGoodsAttribute();
+        BeanConvertUtils.copyProperties(attribute, goodsAttribute);
+        goodsAttributeMapper.updateById(goodsAttribute);
+        return ResponseUtil.ok();
+    }
+
+    public ResponseUtil deleteAttribute(ListIdRequest request) {
+        goodsAttributeMapper.deleteBatchIds(request.getIds());
+        return ResponseUtil.ok();
     }
 }
